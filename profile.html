@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Profile - Chitkara Carpool</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="profile.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app-layout">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="logo-box">
+                C
+            </div>
+
+            <div class="logo-text">
+
+                <strong>
+                    Chitkara
+                </strong>
+
+                <strong>
+                    Carpool
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+
+            <a
+                href="dashboard.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="dashboard.html#find-ride"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+                    ⌕
+                </span>
+
+                <span>
+                    Find a Ride
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="postride.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+                    +
+                </span>
+
+                <span>
+                    Post a Ride
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="myride.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    My Rides
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="#"
+                class="nav-item"
+                onclick="openMessages(event)"
+            >
+
+                <span class="nav-icon">
+                    ▢
+                </span>
+
+                <span>
+                    Messages
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="#"
+                class="nav-item"
+                onclick="openNotifications(event)"
+            >
+
+                <span class="nav-icon">
+                    ♧
+                </span>
+
+                <span>
+                    Notifications
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="profile.html"
+                class="nav-item active"
+            >
+
+                <span class="nav-icon">
+                    ♙
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="#"
+                class="nav-item"
+                onclick="openSettings(event)"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- TRAVEL SAFE -->
+
+        <div class="travel-safe">
+
+            <div class="safe-icon">
+                ✓
+            </div>
+
+            <h3>
+                Travel Safe
+            </h3>
+
+            <p>
+                Your safety is our priority.
+                Follow guidelines and travel
+                with peace of mind.
+            </p>
+
+            <a href="#">
+                Know More →
+            </a>
+
+        </div>
+
+
+
+        <!-- LOGOUT -->
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+
+            ↪
+
+            <span>
+                Logout
+            </span>
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN AREA
+    ========================================== -->
+
+    <div class="main-area">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <h2>
+                    Chitkara Carpool
+                </h2>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <button
+                    class="notification-button"
+                    onclick="openNotifications()"
+                >
+                    ♧
+                </button>
+
+
+                <div class="top-user">
+
+
+                    <div
+                        class="top-user-avatar"
+                        id="topUserAvatar"
+                    >
+                        J
+                    </div>
+
+
+                    <div>
+
+                        <strong id="topUserName">
+                            Student
+                        </strong>
+
+                        <span>
+                            Chitkara Student
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =========================================
+             PROFILE CONTENT
+        ========================================== -->
+
+        <main class="content">
+
+
+
+
+
+
+            <div class="profile-wrapper">
+
+
+                <!-- PROFILE CARD -->
+
+                <section class="profile-card">
+
+
+                    <div class="profile-top">
+
+
+                        <div
+                            class="profile-photo"
+                            id="profilePhoto"
+                        >
+                            J
+                        </div>
+
+
+                        <h2 id="profileName">
+                            Student
+                        </h2>
+
+
+                        <p id="profileEmail">
+                            student@chitkara.edu.in
+                        </p>
+
+
+                        <span class="student-badge">
+                            Chitkara Student
+                        </span>
+
+
+                    </div>
+
+
+
+                    <!-- STATS -->
+
+                   
+
+
+                    <!-- MENU -->
+
+                    <div class="profile-menu">
+
+
+                        <button
+                            class="menu-item"
+                            onclick="openMyRides()"
+                        >
+
+                            <div class="menu-icon">
+                                🚗
+                            </div>
+
+                            <div class="menu-content">
+
+                                <strong>
+                                    My Rides
+                                </strong>
+
+                                <span>
+                                    View your rides
+                                </span>
+
+                            </div>
+
+                            <span class="arrow">
+                                ›
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="menu-item"
+                            onclick="openPayment()"
+                        >
+
+                            <div class="menu-icon">
+                                ₹
+                            </div>
+
+                            <div class="menu-content">
+
+                                <strong>
+                                    Payment Methods
+                                </strong>
+
+                                <span>
+                                    Manage your payments
+                                </span>
+
+                            </div>
+
+                            <span class="arrow">
+                                ›
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="menu-item"
+                            onclick="openContacts()"
+                        >
+
+                            <div class="menu-icon">
+                                ♡
+                            </div>
+
+                            <div class="menu-content">
+
+                                <strong>
+                                    Trusted Contacts
+                                </strong>
+
+                                <span>
+                                    Manage emergency contacts
+                                </span>
+
+                            </div>
+
+                            <span class="arrow">
+                                ›
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="menu-item"
+                            onclick="openHelp()"
+                        >
+
+                            <div class="menu-icon">
+                                ?
+                            </div>
+
+                            <div class="menu-content">
+
+                                <strong>
+                                    Help & Support
+                                </strong>
+
+                                <span>
+                                    Get help with carpool
+                                </span>
+
+                            </div>
+
+                            <span class="arrow">
+                                ›
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            class="menu-item"
+                            onclick="openSettings()"
+                        >
+
+                            <div class="menu-icon">
+                                ⚙
+                            </div>
+
+                            <div class="menu-content">
+
+                                <strong>
+                                    Settings
+                                </strong>
+
+                                <span>
+                                    Manage your preferences
+                                </span>
+
+                            </div>
+
+                            <span class="arrow">
+                                ›
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- EDIT PROFILE -->
+
+                    <button
+                        class="edit-profile-button"
+                        onclick="editProfile()"
+                    >
+                        Edit Profile
+                    </button>
+
+
+                </section>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+</div>
+
+
+<script src="profile.js"></script>
+
+</body>
+
+</html>

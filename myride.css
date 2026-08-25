@@ -1553,3 +1553,57 @@ a {
     }
 
 }
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar-item,
+.nav-item {
+    font-size: 14px !important;
+}
+
+.sidebar-item .nav-icon,
+.nav-item .nav-icon {
+    font-size: 19px !important;
+}
+
+.sidebar-logo strong {
+    font-size: 17px !important;
+}
+
+.sidebar-logo span {
+    font-size: 15px !important;
+}
+
+.safety-card h3 {
+    font-size: 15px !important;
+}
+
+.safety-card p {
+    font-size: 11px !important;
+}
+
+.safety-card a,
+.safety-card button {
+    font-size: 11px !important;
+}
+
+.sidebar-logout {
+    font-size: 13px !important;
+}
+
+
+/* ---------- TOP HEADER ---------- */
+
+.page-title,
+.topbar-title {
+    font-size: 21px !important;
+    font-weight: 700 !important;
+}
+
+.user-details strong {
+    font-size: 12px !important;
+}
+
+.user-details span {
+    font-size: 9px !important;
+}

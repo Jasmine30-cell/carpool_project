@@ -1522,3 +1522,262 @@ a {
     }
 
 }
+
+/* =========================================================
+   POST RIDE — MATCH DASHBOARD TYPOGRAPHY
+========================================================= */
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar-item,
+.nav-item {
+    font-size: 14px !important;
+}
+
+.sidebar-item .nav-icon,
+.nav-item .nav-icon {
+    font-size: 19px !important;
+}
+
+.sidebar-logo strong {
+    font-size: 17px !important;
+}
+
+.sidebar-logo span {
+    font-size: 15px !important;
+}
+
+.safety-card h3 {
+    font-size: 15px !important;
+}
+
+.safety-card p {
+    font-size: 11px !important;
+}
+
+.safety-card a,
+.safety-card button {
+    font-size: 11px !important;
+}
+
+.sidebar-logout {
+    font-size: 13px !important;
+}
+
+
+/* ---------- TOP HEADER ---------- */
+
+.page-title,
+.topbar-title {
+    font-size: 21px !important;
+    font-weight: 700 !important;
+}
+
+.user-details strong {
+    font-size: 12px !important;
+}
+
+.user-details span {
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   POST RIDE CONTENT
+========================================================= */
+
+.content,
+.main-content {
+    padding: 32px 36px !important;
+}
+
+
+/* Small green heading */
+
+.page-heading > span,
+.section-heading > span,
+.eyebrow {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+}
+
+
+/* Main "Post a Ride" heading */
+
+.page-heading h1,
+.page-heading h2,
+.main-heading h1 {
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+}
+
+
+/* Description */
+
+.page-heading p,
+.main-heading p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* =========================================================
+   RIDE DETAILS CARD
+========================================================= */
+
+.form-card h2,
+.ride-form-card h2 {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+.form-card > p,
+.ride-form-card > p {
+    font-size: 10px !important;
+}
+
+
+/* Section titles */
+
+.form-section h3,
+.section-title {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+
+/* Labels */
+
+.form-group label,
+.input-group label {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+}
+
+
+/* Inputs */
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.input-group input,
+.input-group select,
+.input-group textarea {
+    font-size: 12px !important;
+    height: 47px !important;
+}
+
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.input-group input::placeholder,
+.form-group textarea::placeholder {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   RIDE PREVIEW
+========================================================= */
+
+.preview-card h2,
+.ride-preview h2 {
+    font-size: 18px !important;
+}
+
+.preview-card h3,
+.ride-preview h3 {
+    font-size: 13px !important;
+}
+
+.preview-card p,
+.ride-preview p {
+    font-size: 10px !important;
+}
+
+.preview-card strong,
+.ride-preview strong {
+    font-size: 11px !important;
+}
+
+
+/* Preview labels */
+
+.preview-card small,
+.ride-preview small {
+    font-size: 8px !important;
+}
+
+
+/* Price */
+
+.preview-price,
+.price-value {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button,
+.post-button,
+.submit-button {
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   SPACING
+========================================================= */
+
+.form-card,
+.ride-form-card {
+    padding: 26px !important;
+}
+
+.preview-card,
+.ride-preview {
+    padding: 24px !important;
+}
+
+.form-section {
+    margin-top: 24px;
+}
+
+
+/* =========================================================
+   INPUT ROWS
+========================================================= */
+
+.form-row {
+    gap: 16px !important;
+}
+
+.form-group {
+    margin-bottom: 18px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .content,
+    .main-content {
+        padding: 25px !important;
+    }
+
+    .page-heading h1,
+    .page-heading h2,
+    .main-heading h1 {
+        font-size: 27px !important;
+    }
+}

@@ -1,0 +1,875 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --green: #078b45;
+    --dark-green: #05783b;
+    --light-green: #edf8f1;
+    --very-light-green: #f5faf7;
+
+    --text: #17201d;
+    --muted: #7a8580;
+
+    --border: #e3ebe6;
+    --white: #ffffff;
+}
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f6faf8;
+    color: var(--text);
+}
+
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+.app-layout {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+
+    width: 235px;
+
+    background: white;
+
+    border-right: 1px solid var(--border);
+
+    min-height: 100vh;
+
+    padding: 25px 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+/* LOGO */
+
+.sidebar-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 5px 10px 30px;
+}
+
+
+.logo-box {
+
+    width: 43px;
+    height: 43px;
+
+    background: var(--green);
+
+    color: white;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px rgba(7, 139, 69, .15);
+}
+
+
+.logo-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.1;
+
+}
+
+
+.logo-text strong {
+
+    font-size: 16px;
+
+    color: #111;
+
+}
+
+
+.logo-text strong:last-child {
+
+    color: var(--green);
+
+}
+
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.sidebar-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-item {
+
+    height: 46px;
+
+    padding: 0 13px;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-decoration: none;
+
+    color: #25302b;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition: .2s ease;
+}
+
+
+.nav-item:hover {
+
+    background: var(--light-green);
+
+    color: var(--green);
+}
+
+
+.nav-item.active {
+
+    background: var(--light-green);
+
+    color: var(--green);
+
+    font-weight: 600;
+}
+
+
+.nav-icon {
+
+    width: 21px;
+
+    text-align: center;
+
+    font-size: 18px;
+}
+
+
+
+/* =========================================
+   TRAVEL SAFE
+========================================= */
+
+.travel-safe {
+
+    margin-top: auto;
+
+    padding: 19px 17px;
+
+    background: #f0f9f3;
+
+    border: 1px solid #dcefe2;
+
+    border-radius: 13px;
+}
+
+
+.safe-icon {
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+}
+
+
+.travel-safe h3 {
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+
+.travel-safe p {
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    color: #65736c;
+
+    margin-bottom: 10px;
+}
+
+
+.travel-safe a {
+
+    color: var(--green);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.logout-button {
+
+    border: none;
+
+    background: transparent;
+
+    margin-top: 15px;
+
+    padding: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #6d7773;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 12px;
+}
+
+
+
+/* =========================================
+   MAIN AREA
+========================================= */
+
+.main-area {
+
+    margin-left: 235px;
+
+    width: calc(100% - 235px);
+
+    min-height: 100vh;
+}
+
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+
+    height: 75px;
+
+    background: white;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+}
+
+
+.topbar h2 {
+
+    color: var(--green);
+
+    font-size: 21px;
+
+    font-weight: 600;
+}
+
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+
+.notification-button {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    color: #26322d;
+}
+
+
+.top-user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.top-user-avatar {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #e2f2e7;
+
+    color: var(--green);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+}
+
+
+.top-user strong {
+
+    display: block;
+
+    font-size: 12px;
+}
+
+
+.top-user span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+
+    padding: 45px 55px;
+
+    min-height: calc(100vh - 75px);
+}
+
+
+.profile-heading {
+
+    margin-bottom: 28px;
+}
+
+
+.profile-heading > span {
+
+    color: var(--green);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.profile-heading h1 {
+
+    margin-top: 5px;
+
+    font-size: 31px;
+
+    font-weight: 600;
+}
+
+
+.profile-heading p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+
+
+/* =========================================
+   PROFILE WRAPPER
+========================================= */
+
+.profile-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+}
+
+
+.profile-card {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 8px 30px rgba(20, 70, 40, .04);
+}
+
+
+
+/* =========================================
+   PROFILE TOP
+========================================= */
+
+.profile-top {
+
+    text-align: center;
+
+    padding-bottom: 25px;
+}
+
+
+.profile-photo {
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: #e2f2e7;
+
+    color: var(--green);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 14px;
+
+    font-size: 36px;
+
+    font-weight: 700;
+
+    overflow: hidden;
+
+    border: 4px solid white;
+
+    box-shadow:
+        0 4px 18px rgba(0, 80, 40, .12);
+}
+
+
+.profile-photo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.profile-top h2 {
+
+    font-size: 21px;
+
+    font-weight: 600;
+}
+
+
+.profile-top p {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+.student-badge {
+
+    display: inline-block;
+
+    margin-top: 7px;
+
+    color: var(--green);
+
+    background: var(--light-green);
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 600;
+}
+
+
+
+/* =========================================
+   STATS
+========================================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-bottom: 18px;
+}
+
+
+.stat {
+
+    text-align: center;
+
+    padding: 15px 8px;
+
+    border-right: 1px solid var(--border);
+}
+
+
+.stat:last-child {
+
+    border-right: none;
+}
+
+
+.stat strong {
+
+    display: block;
+
+    color: var(--green);
+
+    font-size: 19px;
+
+    font-weight: 600;
+}
+
+
+.stat span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.profile-menu {
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+.menu-item {
+
+    width: 100%;
+
+    min-height: 64px;
+
+    padding: 10px 15px;
+
+    background: white;
+
+    border: none;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition: .2s;
+}
+
+
+.menu-item:last-child {
+
+    border-bottom: none;
+}
+
+
+.menu-item:hover {
+
+    background: var(--light-green);
+}
+
+
+.menu-icon {
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 8px;
+
+    background: var(--light-green);
+
+    color: var(--green);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    font-size: 14px;
+}
+
+
+.menu-content {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.menu-content strong {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: var(--text);
+}
+
+
+.menu-content span {
+
+    font-size: 9px;
+
+    color: var(--muted);
+}
+
+
+.arrow {
+
+    color: #a2aaa6;
+
+    font-size: 22px;
+}
+
+
+
+/* =========================================
+   EDIT
+========================================= */
+
+.edit-profile-button {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    height: 43px;
+
+    border: 1px solid var(--green);
+
+    background: var(--green);
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.edit-profile-button:hover {
+
+    background: var(--dark-green);
+}
+
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        width: 190px;
+    }
+
+    .main-area {
+
+        margin-left: 190px;
+
+        width: calc(100% - 190px);
+    }
+
+    .content {
+
+        padding: 35px 25px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+
+        display: none;
+    }
+
+    .main-area {
+
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+    .content {
+
+        padding: 30px 15px;
+    }
+
+    .topbar {
+
+        padding: 0 18px;
+    }
+
+    .top-user > div:last-child {
+
+        display: none;
+    }
+
+}

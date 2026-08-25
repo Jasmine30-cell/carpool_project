@@ -1675,7 +1675,7 @@ function goBack() {
 
 
     window.location.href =
-        "home.html";
+        "dashboard.html";
 
 }
 

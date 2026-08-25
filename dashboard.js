@@ -1,10 +1,10 @@
 /* =====================================================
-   DASHBOARD JAVASCRIPT
+   CHITKARA CARPOOL - DASHBOARD
 ===================================================== */
 
 
 /* =====================================================
-   GET CURRENT USER
+   CURRENT USER
 ===================================================== */
 
 const currentUser =
@@ -14,99 +14,125 @@ const currentUser =
 
 
 /* =====================================================
-   PROTECT DASHBOARD
+   PAGE PROTECTION
 ===================================================== */
 
 if (!currentUser) {
 
-    window.location.href = "index.html";
+    window.location.href =
+        "index.html";
 
 }
 
 
 /* =====================================================
-   DOM ELEMENTS
+   DOM
 ===================================================== */
 
 const dashboardUserName =
-    document.getElementById("dashboardUserName");
+    document.getElementById(
+        "dashboardUserName"
+    );
 
 const profileAvatar =
-    document.getElementById("profileAvatar");
+    document.getElementById(
+        "profileAvatar"
+    );
 
-const upcomingRide =
-    document.getElementById("upcomingRide");
+const pickup =
+    document.getElementById(
+        "pickup"
+    );
 
-const sideNotification =
-    document.getElementById("sideNotification");
+const destination =
+    document.getElementById(
+        "destination"
+    );
 
-const topNotification =
-    document.getElementById("topNotification");
+const date =
+    document.getElementById(
+        "date"
+    );
+
+const rideContainer =
+    document.getElementById(
+        "rideContainer"
+    );
+
+const noResults =
+    document.getElementById(
+        "noResults"
+    );
+
+const resultCount =
+    document.getElementById(
+        "resultCount"
+    );
+
+const sortSelect =
+    document.getElementById(
+        "sortSelect"
+    );
+
 
 
 /* =====================================================
-   DISPLAY USER
+   USER
 ===================================================== */
 
-function displayUser() {
-
-    if (!currentUser) {
-        return;
-    }
-
-
-    const name =
-        currentUser.name ||
-        currentUser.fullName ||
-        "Student";
+const loggedUserName =
+    currentUser?.name ||
+    currentUser?.fullName ||
+    "Student";
 
 
-    if (dashboardUserName) {
+if (dashboardUserName) {
 
-        dashboardUserName.textContent =
-            name;
-
-    }
-
-
-    if (profileAvatar) {
-
-        profileAvatar.textContent =
-            name
-                .charAt(0)
-                .toUpperCase();
-
-    }
+    dashboardUserName.textContent =
+        loggedUserName;
 
 }
 
 
-displayUser();
+if (profileAvatar) {
+
+    profileAvatar.textContent =
+        loggedUserName
+            .charAt(0)
+            .toUpperCase();
+
+}
+
 
 
 /* =====================================================
-   STORAGE HELPER
+   RIDE DATA
 ===================================================== */
 
-function getStorageArray(key) {
+let allRides = [];
+
+
+/* =====================================================
+   GET RIDES FROM LOCAL STORAGE
+===================================================== */
+
+function getPostedRides() {
 
     try {
 
-        const data =
+        const rides =
             JSON.parse(
-                localStorage.getItem(key)
+                localStorage.getItem(
+                    "postedRides"
+                )
             );
 
-        return Array.isArray(data)
-            ? data
+
+        return Array.isArray(rides)
+            ? rides
             : [];
 
-    } catch (error) {
-
-        console.error(
-            `Error reading ${key}:`,
-            error
-        );
+    } catch {
 
         return [];
 
@@ -116,174 +142,826 @@ function getStorageArray(key) {
 
 
 /* =====================================================
-   GET RIDES
+   SAMPLE RIDES
+   Used only if no rides have been posted yet.
 ===================================================== */
 
-let myRides =
-    getStorageArray("myRides");
+function getSampleRides() {
 
-let requestedRides =
-    getStorageArray("requestedRides");
+    return [
 
-let cancelledRides =
-    getStorageArray("cancelledRides");
+        {
+            id: "sample1",
 
+            driverName: "Aarav Sharma",
 
-/* =====================================================
-   CURRENT USER EMAIL
-===================================================== */
+            driverEmail:
+                "aarav@chitkara.edu.in",
 
-const currentEmail =
-    currentUser &&
-    currentUser.email
-        ? currentUser.email.toLowerCase()
-        : "";
+            pickup:
+                "Zirakpur",
 
+            destination:
+                "Chitkara University",
 
-/* =====================================================
-   CHECK IF RIDE BELONGS TO USER
-===================================================== */
+            date:
+                getTomorrow(),
 
-function isCurrentUserRide(ride) {
+            time:
+                "08:00",
 
-    if (!currentEmail) {
+            seats:
+                3,
 
-        return true;
+            seatsLeft:
+                3,
 
-    }
+            price:
+                40,
 
+            carModel:
+                "Swift Dzire",
 
-    const email =
-        (
-            ride.email ||
-            ride.userEmail ||
-            ride.requestedBy ||
-            ride.passengerEmail ||
-            ""
-        ).toLowerCase();
+            carColor:
+                "White",
 
+            carNumber:
+                "PB65AB1234",
 
-    /*
-       Old rides may not contain
-       an email field.
+            rating:
+                4.8,
 
-       So don't accidentally hide them.
-    */
+            reviews:
+                24,
 
-    if (!email) {
+            notes:
+                "Leaving from Zirakpur Bus Stand."
 
-        return true;
-
-    }
+        },
 
 
-    return email === currentEmail;
+        {
+            id: "sample2",
 
-}
+            driverName: "Simran Kaur",
+
+            driverEmail:
+                "simran@chitkara.edu.in",
+
+            pickup:
+                "VIP Road",
+
+            destination:
+                "Chitkara University",
+
+            date:
+                getTomorrow(),
+
+            time:
+                "08:30",
+
+            seats:
+                2,
+
+            seatsLeft:
+                2,
+
+            price:
+                45,
+
+            carModel:
+                "Honda City",
+
+            carColor:
+                "Black",
+
+            carNumber:
+                "PB12CD4567",
+
+            rating:
+                4.9,
+
+            reviews:
+                31,
+
+            notes:
+                "Pickup near VIP Road."
+
+        },
 
 
-/* =====================================================
-   USER REQUESTED RIDES
-===================================================== */
+        {
+            id: "sample3",
 
-const userRequestedRides =
-    requestedRides.filter(
-        isCurrentUserRide
-    );
+            driverName: "Rohan Verma",
 
+            driverEmail:
+                "rohan@chitkara.edu.in",
 
-/* =====================================================
-   USER MY RIDES
-===================================================== */
+            pickup:
+                "Mohali",
 
-const userMyRides =
-    myRides.filter(
-        isCurrentUserRide
-    );
+            destination:
+                "Chitkara University",
 
+            date:
+                getTomorrow(),
 
-/* =====================================================
-   FIND UPCOMING RIDE
-===================================================== */
+            time:
+                "07:45",
 
-function getUpcomingRide() {
+            seats:
+                4,
 
-    const rides = [
+            seatsLeft:
+                4,
 
-        ...userMyRides,
+            price:
+                35,
 
-        ...userRequestedRides
+            carModel:
+                "Hyundai i20",
+
+            carColor:
+                "Blue",
+
+            carNumber:
+                "PB65EF7890",
+
+            rating:
+                4.7,
+
+            reviews:
+                18,
+
+            notes:
+                "Morning ride to campus."
+
+        }
 
     ];
 
-
-    /*
-       Remove cancelled rides.
-    */
-
-    const activeRides =
-        rides.filter(
-            ride => {
-
-                const status =
-                    String(
-                        ride.status ||
-                        "pending"
-                    ).toLowerCase();
+}
 
 
-                return (
-                    status !== "cancelled" &&
-                    status !== "rejected" &&
-                    status !== "completed"
-                );
+/* =====================================================
+   TOMORROW
+===================================================== */
 
-            }
-        );
+function getTomorrow() {
 
+    const date =
+        new Date();
 
-    if (
-        activeRides.length === 0
-    ) {
-
-        return null;
-
-    }
+    date.setDate(
+        date.getDate() + 1
+    );
 
 
-    return activeRides[0];
+    return date
+        .toISOString()
+        .split("T")[0];
 
 }
 
 
 /* =====================================================
-   DISPLAY UPCOMING RIDE
+   LOAD RIDES
 ===================================================== */
 
-function displayUpcomingRide() {
+function loadRides() {
 
-    if (!upcomingRide) {
-        return;
+    const postedRides =
+        getPostedRides();
+
+
+    if (
+        postedRides.length > 0
+    ) {
+
+        allRides =
+            postedRides;
+
+    } else {
+
+        allRides =
+            getSampleRides();
+
     }
 
 
+    displayRides(
+        allRides
+    );
+
+    loadUpcomingRide();
+
+}
+
+
+/* =====================================================
+   DISPLAY RIDES
+===================================================== */
+
+function displayRides(
+    rides
+) {
+
+    rideContainer.innerHTML =
+        "";
+
+
+    if (
+        rides.length === 0
+    ) {
+
+        noResults.style.display =
+            "block";
+
+        resultCount.textContent =
+            "No matching rides found.";
+
+        return;
+
+    }
+
+
+    noResults.style.display =
+        "none";
+
+
+    resultCount.textContent =
+        `Showing ${rides.length} available ride${
+            rides.length === 1
+                ? ""
+                : "s"
+        }`;
+
+
+    rides.forEach(
+        ride => {
+
+            const card =
+                createRideCard(
+                    ride
+                );
+
+
+            rideContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CREATE RIDE CARD
+===================================================== */
+
+function createRideCard(
+    ride
+) {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "ride-card";
+
+
+    const initial =
+        (
+            ride.driverName ||
+            "S"
+        )
+            .charAt(0)
+            .toUpperCase();
+
+
+    const rating =
+        ride.rating ||
+        4.8;
+
+
+    const reviews =
+        ride.reviews ||
+        24;
+
+
+    const seatsLeft =
+        ride.seatsLeft ??
+        ride.seats ??
+        0;
+
+
+    const price =
+        ride.price ||
+        0;
+
+
+    card.innerHTML = `
+
+        <div class="ride-driver">
+
+            <div class="ride-avatar">
+                ${initial}
+            </div>
+
+            <div class="ride-driver-info">
+
+                <strong>
+                    ${escapeHTML(
+                        ride.driverName ||
+                        "Chitkara Student"
+                    )}
+                </strong>
+
+                <span>
+                    ★ ${rating}
+                    (${reviews} reviews)
+                </span>
+
+            </div>
+
+            <div class="verified-small">
+                ✓ Verified
+            </div>
+
+        </div>
+
+
+        <div class="ride-route">
+
+            <div class="route-location">
+
+                <div class="route-dot pickup-dot">
+                    ●
+                </div>
+
+                <div>
+
+                    <small>
+                        PICKUP
+                    </small>
+
+                    <strong>
+                        ${escapeHTML(
+                            ride.pickup ||
+                            ride.pickupLocation ||
+                            "Pickup"
+                        )}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-line-small"></div>
+
+
+            <div class="route-location">
+
+                <div class="route-dot destination-dot">
+                    ●
+                </div>
+
+                <div>
+
+                    <small>
+                        DESTINATION
+                    </small>
+
+                    <strong>
+                        ${escapeHTML(
+                            ride.destination ||
+                            ride.destinationLocation ||
+                            "Chitkara University"
+                        )}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ride-meta">
+
+            <span>
+                ◷
+                ${formatTime(
+                    ride.time ||
+                    ride.rideTime ||
+                    "08:00"
+                )}
+            </span>
+
+            <span>
+                ◉
+                ${seatsLeft} seats
+            </span>
+
+            <strong>
+                ₹${price}
+            </strong>
+
+        </div>
+
+
+        <div class="ride-card-footer">
+
+            <div>
+
+                <small>
+                    ${formatDate(
+                        ride.date ||
+                        ride.rideDate
+                    )}
+
+                </small>
+
+                <span>
+                    ${escapeHTML(
+                        ride.carModel ||
+                        ride.carName ||
+                        "Car"
+                    )}
+                    •
+                    ${escapeHTML(
+                        ride.carColor ||
+                        "Car"
+                    )}
+                </span>
+
+            </div>
+
+
+            <button
+                class="view-ride-button"
+                onclick="viewRide('${ride.id}')"
+            >
+                View Ride →
+            </button>
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchRides() {
+
+    const selectedPickup =
+        pickup.value
+            .trim()
+            .toLowerCase();
+
+
+    const selectedDestination =
+        destination.value
+            .trim()
+            .toLowerCase();
+
+
+    const selectedDate =
+        date.value;
+
+
+    let filtered =
+        [...allRides];
+
+
+    if (
+        selectedPickup
+    ) {
+
+        filtered =
+            filtered.filter(
+                ride => {
+
+                    const ridePickup =
+                        (
+                            ride.pickup ||
+                            ride.pickupLocation ||
+                            ""
+                        )
+                            .toLowerCase();
+
+
+                    return ridePickup
+                        .includes(
+                            selectedPickup
+                        );
+
+                }
+            );
+
+    }
+
+
+    if (
+        selectedDestination
+    ) {
+
+        filtered =
+            filtered.filter(
+                ride => {
+
+                    const rideDestination =
+                        (
+                            ride.destination ||
+                            ride.destinationLocation ||
+                            ""
+                        )
+                            .toLowerCase();
+
+
+                    return rideDestination
+                        .includes(
+                            selectedDestination
+                        );
+
+                }
+            );
+
+    }
+
+
+    if (
+        selectedDate
+    ) {
+
+        filtered =
+            filtered.filter(
+                ride => {
+
+                    return (
+                        ride.date ||
+                        ride.rideDate
+                    ) === selectedDate;
+
+                }
+            );
+
+    }
+
+
+    displayRides(
+        filtered
+    );
+
+
+    document
+        .querySelector(
+            ".results-section"
+        )
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =====================================================
+   SORT
+===================================================== */
+
+sortSelect.addEventListener(
+    "change",
+    function () {
+
+        let sorted =
+            [...allRides];
+
+
+        if (
+            this.value === "price"
+        ) {
+
+            sorted.sort(
+                (
+                    a,
+                    b
+                ) =>
+                    Number(
+                        a.price || 0
+                    ) -
+                    Number(
+                        b.price || 0
+                    )
+            );
+
+        }
+
+
+        else if (
+            this.value === "seats"
+        ) {
+
+            sorted.sort(
+                (
+                    a,
+                    b
+                ) =>
+                    Number(
+                        b.seatsLeft ??
+                        b.seats ??
+                        0
+                    ) -
+                    Number(
+                        a.seatsLeft ??
+                        a.seats ??
+                        0
+                    )
+            );
+
+        }
+
+
+        else {
+
+            sorted.sort(
+                (
+                    a,
+                    b
+                ) =>
+                    (
+                        a.time ||
+                        a.rideTime ||
+                        ""
+                    ).localeCompare(
+                        b.time ||
+                        b.rideTime ||
+                        ""
+                    )
+            );
+
+        }
+
+
+        displayRides(
+            sorted
+        );
+
+    }
+);
+
+
+/* =====================================================
+   QUICK SEARCH
+===================================================== */
+
+function quickSearch(
+    location
+) {
+
+    pickup.value =
+        location;
+
+
+    destination.value =
+        "Chitkara University";
+
+
+    searchRides();
+
+}
+
+
+/* =====================================================
+   VIEW RIDE
+===================================================== */
+
+function viewRide(
+    rideId
+) {
+
     const ride =
-        getUpcomingRide();
+        allRides.find(
+            item =>
+                String(
+                    item.id
+                ) === String(
+                    rideId
+                )
+        );
 
 
     if (!ride) {
 
-        upcomingRide.innerHTML = `
+        alert(
+            "Ride details could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Save the entire ride so ride.js
+       can display it.
+    */
+
+    localStorage.setItem(
+        "selectedRide",
+        JSON.stringify(
+            ride
+        )
+    );
+
+
+    localStorage.setItem(
+        "selectedRideId",
+        ride.id
+    );
+
+
+    window.location.href =
+        "ride.html";
+
+}
+
+
+/* =====================================================
+   UPCOMING RIDE
+===================================================== */
+
+function loadUpcomingRide() {
+
+    const container =
+        document.getElementById(
+            "upcomingRide"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    let myRides = [];
+
+
+    try {
+
+        myRides =
+            JSON.parse(
+                localStorage.getItem(
+                    "myRides"
+                )
+            ) || [];
+
+    } catch {
+
+        myRides = [];
+
+    }
+
+
+    const upcoming =
+        myRides.find(
+            ride =>
+                ride.status === "upcoming" ||
+                ride.status === "pending"
+        );
+
+
+    if (!upcoming) {
+
+        container.innerHTML = `
 
             <div class="empty-upcoming">
 
-                <strong>
-                    No upcoming rides
-                </strong>
+                <div>
+                    🚗
+                </div>
 
-                <span>
-                    Find a ride and start your journey.
-                </span>
+                <p>
+                    No upcoming rides yet.
+                </p>
+
+                <button
+                    onclick="scrollToFindRide()"
+                >
+                    Find a Ride
+                </button>
 
             </div>
 
@@ -294,93 +972,45 @@ function displayUpcomingRide() {
     }
 
 
-    const pickup =
-        ride.pickup ||
-        ride.from ||
-        ride.start ||
-        "Pickup Location";
+    container.innerHTML = `
 
+        <div class="upcoming-ride-card">
 
-    const destination =
-        ride.destination ||
-        ride.to ||
-        ride.drop ||
-        "Chitkara University";
+            <div>
 
-
-    const date =
-        ride.date ||
-        ride.rideDate ||
-        "Upcoming";
-
-
-    const time =
-        ride.time ||
-        ride.rideTime ||
-        "09:00 AM";
-
-
-    const driver =
-        ride.driverName ||
-        ride.name ||
-        ride.driver ||
-        "Chitkara Student";
-
-
-    upcomingRide.innerHTML = `
-
-        <div class="upcoming-card">
-
-
-            <div class="upcoming-time">
-
-                <strong>
-                    ${escapeHTML(
-                        formatDate(date)
+                <span>
+                    ${formatDate(
+                        upcoming.date ||
+                        upcoming.rideDate
                     )}
-                </strong>
-
-                <span>
-                    ${escapeHTML(time)}
                 </span>
 
-            </div>
-
-
-            <div class="upcoming-route">
-
-                <span>
-                    ROUTE
-                </span>
-
-                <strong>
-
-                    ${escapeHTML(pickup)}
-
+                <h3>
+                    ${escapeHTML(
+                        upcoming.pickup ||
+                        "Pickup"
+                    )}
                     →
+                    ${escapeHTML(
+                        upcoming.destination ||
+                        "Destination"
+                    )}
+                </h3>
 
-                    ${escapeHTML(destination)}
-
-                </strong>
-
-
-                <div class="upcoming-driver">
-
-                    Driver:
-                    ${escapeHTML(driver)}
-
-                </div>
+                <p>
+                    ${formatTime(
+                        upcoming.time ||
+                        upcoming.rideTime ||
+                        "08:00"
+                    )}
+                </p>
 
             </div>
 
 
-            <a
-                href="myride.html"
-                class="upcoming-action"
-            >
-                View Ride Details
-            </a>
-
+            <span class="upcoming-status">
+                ${upcoming.status || "upcoming"}
+            </span>
 
         </div>
 
@@ -390,144 +1020,22 @@ function displayUpcomingRide() {
 
 
 /* =====================================================
-   DATE FORMAT
+   SCROLL TO FIND RIDE
 ===================================================== */
 
-function formatDate(date) {
+function scrollToFindRide() {
 
-    if (!date) {
-
-        return "UP";
-
-    }
-
-
-    const dateObject =
-        new Date(date);
-
-
-    if (
-        isNaN(
-            dateObject.getTime()
-        )
-    ) {
-
-        return String(date);
-
-    }
-
-
-    const month =
-        dateObject.toLocaleString(
-            "en-US",
-            {
-                month: "short"
-            }
+    const section =
+        document.getElementById(
+            "findRide"
         );
 
 
-    const day =
-        dateObject.getDate();
+    if (section) {
 
-
-    return `${month} ${day}`;
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        String(value);
-
-    return div.innerHTML;
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-function updateNotifications() {
-
-    /*
-       Count pending requests.
-
-       You can later expand this to include
-       accepted / cancelled / new messages.
-    */
-
-    const pending =
-        userRequestedRides.filter(
-            ride => {
-
-                const status =
-                    String(
-                        ride.status ||
-                        "pending"
-                    ).toLowerCase();
-
-
-                return status === "pending";
-
-            }
-        );
-
-
-    const count =
-        pending.length;
-
-
-    if (sideNotification) {
-
-        sideNotification.textContent =
-            count;
-
-
-        if (count > 0) {
-
-            sideNotification.classList.add(
-                "show"
-            );
-
-        } else {
-
-            sideNotification.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-
-
-    if (topNotification) {
-
-        topNotification.textContent =
-            count;
-
-
-        if (count > 0) {
-
-            topNotification.classList.add(
-                "show"
-            );
-
-        } else {
-
-            topNotification.classList.remove(
-                "show"
-            );
-
-        }
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
 
     }
 
@@ -535,436 +1043,13 @@ function updateNotifications() {
 
 
 /* =====================================================
-   FIND RIDE
-===================================================== */
-
-function goToFindRide() {
-
-    window.location.href =
-        "home.html";
-
-}
-
-
-/* =====================================================
-   OFFER RIDE
+   POST RIDE
 ===================================================== */
 
 function goToOfferRide() {
 
-    /*
-       Change this if your actual file
-       has another name.
-    */
-
     window.location.href =
-        "offer.html";
-
-}
-
-
-/* =====================================================
-   MY RIDES
-===================================================== */
-
-function goToMyRides() {
-
-    window.location.href =
-        "myride.html";
-
-}
-
-
-/* =====================================================
-   SEARCH RIDE
-===================================================== */
-
-function searchRide() {
-
-    const pickup =
-        document
-            .getElementById(
-                "pickupLocation"
-            )
-            .value
-            .trim();
-
-
-    const destination =
-        document
-            .getElementById(
-                "destination"
-            )
-            .value
-            .trim();
-
-
-    /*
-       Basic validation
-    */
-
-    if (!pickup) {
-
-        alert(
-            "Please enter your pickup location."
-        );
-
-        return;
-
-    }
-
-
-    if (!destination) {
-
-        alert(
-            "Please enter your destination."
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Store search information.
-
-       home.js can use this later.
-    */
-
-    localStorage.setItem(
-        "rideSearch",
-        JSON.stringify({
-
-            pickup: pickup,
-
-            destination: destination
-
-        })
-    );
-
-
-    window.location.href =
-        "home.html";
-
-}
-
-
-/* =====================================================
-   QUICK SEARCH
-===================================================== */
-
-function quickSearch(location) {
-
-    localStorage.setItem(
-        "rideSearch",
-        JSON.stringify({
-
-            pickup: location,
-
-            destination:
-                "Chitkara University"
-
-        })
-    );
-
-
-    window.location.href =
-        "home.html";
-
-}
-
-
-/* =====================================================
-   MESSAGES
-===================================================== */
-
-function openMessages() {
-
-    /*
-       If you already have messages.html,
-       simply change this line.
-    */
-
-    if (
-        fileExists("messages.html")
-    ) {
-
-        window.location.href =
-            "messages.html";
-
-    } else {
-
-        alert(
-            "Messages feature is coming soon."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-function openNotifications() {
-
-    const pending =
-        userRequestedRides.filter(
-            ride => {
-
-                return (
-                    String(
-                        ride.status ||
-                        "pending"
-                    ).toLowerCase()
-                    === "pending"
-                );
-
-            }
-        );
-
-
-    if (pending.length === 0) {
-
-        alert(
-            "You don't have any new notifications."
-        );
-
-        return;
-
-    }
-
-
-    alert(
-        `You have ${pending.length} pending ride request${
-            pending.length > 1
-                ? "s"
-                : ""
-        }.`
-    );
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function openProfile() {
-
-    /*
-       Change to profile.html if you
-       create the page.
-    */
-
-    if (
-        fileExists("profile.html")
-    ) {
-
-        window.location.href =
-            "profile.html";
-
-    } else {
-
-        alert(
-            "Profile page is coming soon."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-function openSettings() {
-
-    if (
-        fileExists("settings.html")
-    ) {
-
-        window.location.href =
-            "settings.html";
-
-    } else {
-
-        alert(
-            "Settings page is coming soon."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   SAFETY
-===================================================== */
-
-function showSafety() {
-
-    alert(
-        "Safety Tips:\n\n" +
-        "• Travel with verified Chitkara students.\n" +
-        "• Confirm the vehicle and driver details.\n" +
-        "• Be punctual at the pickup point.\n" +
-        "• Share your ride details with someone you trust.\n" +
-        "• Report anything suspicious."
-    );
-
-}
-
-
-/* =====================================================
-   MOBILE SIDEBAR
-===================================================== */
-
-function toggleSidebar() {
-
-    const sidebar =
-        document.querySelector(
-            ".sidebar"
-        );
-
-
-    if (!sidebar) {
-        return;
-    }
-
-
-    sidebar.classList.toggle(
-        "open"
-    );
-
-
-    let overlay =
-        document.querySelector(
-            ".sidebar-overlay"
-        );
-
-
-    /*
-       Create overlay dynamically.
-    */
-
-    if (!overlay) {
-
-        overlay =
-            document.createElement(
-                "div"
-            );
-
-        overlay.className =
-            "sidebar-overlay";
-
-        document.body.appendChild(
-            overlay
-        );
-
-
-        overlay.addEventListener(
-            "click",
-            function () {
-
-                sidebar.classList.remove(
-                    "open"
-                );
-
-                overlay.classList.remove(
-                    "show"
-                );
-
-            }
-        );
-
-    }
-
-
-    overlay.classList.toggle(
-        "show",
-        sidebar.classList.contains(
-            "open"
-        )
-    );
-
-}
-
-
-/* =====================================================
-   CLOSE SIDEBAR WHEN LINK CLICKED
-===================================================== */
-
-document
-    .querySelectorAll(
-        ".sidebar-item"
-    )
-    .forEach(
-        item => {
-
-            item.addEventListener(
-                "click",
-                function () {
-
-                    if (
-                        window.innerWidth <= 900
-                    ) {
-
-                        const sidebar =
-                            document.querySelector(
-                                ".sidebar"
-                            );
-
-                        const overlay =
-                            document.querySelector(
-                                ".sidebar-overlay"
-                            );
-
-
-                        if (sidebar) {
-
-                            sidebar.classList.remove(
-                                "open"
-                            );
-
-                        }
-
-
-                        if (overlay) {
-
-                            overlay.classList.remove(
-                                "show"
-                            );
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   FILE EXISTS HELPER
-===================================================== */
-
-function fileExists(filename) {
-
-    /*
-       This doesn't make a network request.
-       It is only used to avoid sending the user
-       to pages that don't exist in the project.
-
-       For your local project, returning false
-       by default is safer.
-    */
-
-    return false;
+        "postride.html";
 
 }
 
@@ -974,18 +1059,6 @@ function fileExists(filename) {
 ===================================================== */
 
 function logout() {
-
-    /*
-       IMPORTANT:
-
-       We remove ONLY currentUser.
-
-       Registered account data,
-       rides,
-       requests,
-       cancelled rides etc.
-       remain in Local Storage.
-    */
 
     localStorage.removeItem(
         "currentUser"
@@ -999,18 +1072,208 @@ function logout() {
 
 
 /* =====================================================
-   INITIALIZE
+   SIDEBAR
 ===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+function toggleSidebar() {
 
-        displayUser();
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
 
-        displayUpcomingRide();
 
-        updateNotifications();
+    sidebar.classList.toggle(
+        "open"
+    );
+
+}
+
+
+/* =====================================================
+   NAVIGATION PLACEHOLDERS
+===================================================== */
+
+function openMessages() {
+
+    alert(
+        "Messages feature coming soon."
+    );
+
+}
+
+
+function openNotifications() {
+
+    alert(
+        "You have no new notifications."
+    );
+
+}
+
+
+function openProfile() {
+
+    alert(
+        "Profile feature coming soon."
+    );
+
+}
+
+
+function openSettings() {
+
+    alert(
+        "Settings feature coming soon."
+    );
+
+}
+
+
+function showSafety() {
+
+    alert(
+        "CHITKARA CARPOOL SAFETY\n\n" +
+        "✓ Travel with verified students\n" +
+        "✓ Confirm vehicle details\n" +
+        "✓ Meet at the selected pickup point\n" +
+        "✓ Be punctual\n" +
+        "✓ Report suspicious activity"
+    );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(
+    value
+) {
+
+    if (!value) {
+        return "Date not set";
+    }
+
+
+    const date =
+        new Date(
+            value + "T00:00:00"
+        );
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return value;
 
     }
-);
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function formatTime(
+    value
+) {
+
+    if (!value) {
+        return "Time not set";
+    }
+
+
+    const parts =
+        value.split(":");
+
+
+    if (
+        parts.length < 2
+    ) {
+
+        return value;
+
+    }
+
+
+    let hour =
+        Number(
+            parts[0]
+        );
+
+
+    const minute =
+        parts[1];
+
+
+    const period =
+        hour >= 12
+            ? "PM"
+            : "AM";
+
+
+    hour =
+        hour % 12 || 12;
+
+
+    return `${hour}:${minute} ${period}`;
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+loadRides();
