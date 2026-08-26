@@ -22,6 +22,8 @@
         href="dashboard.css"
     >
 
+      <link rel="stylesheet" href="theme.css">
+
 <style>
 
         /* Top-right logout button */
@@ -217,13 +219,16 @@
            
 
 
-            <button
-                class="sidebar-item sidebar-button"
-                onclick="openSettings()"
+        
+
+            <a
+                href="setting.html"
+                class="sidebar-item"
             >
                 <span class="nav-icon">⚙</span>
                 <span>Settings</span>
-            </button>
+            </a>
+
 
 
         </nav>
@@ -370,19 +375,6 @@
             ================================================== -->
 
             <section class="hero-card">
-
-
-                <div class="hero-image">
-
-                    <img
-                        src="carpool.png"
-                        alt="Carpool"
-                    >
-
-                </div>
-
-
-                <div class="hero-gradient"></div>
 
 
                 <div class="hero-content">
@@ -951,6 +943,7 @@
 
 
 <script src="dashboard.js"></script>
+<script src="theme.js"></script>
 
 </body>
 

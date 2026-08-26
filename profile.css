@@ -1,44 +1,74 @@
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
 
 
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root {
+
     --green: #078b45;
+
     --dark-green: #05783b;
+
     --light-green: #edf8f1;
+
     --very-light-green: #f5faf7;
 
     --text: #17201d;
+
     --muted: #7a8580;
 
     --border: #e3ebe6;
+
     --white: #ffffff;
+
 }
 
+
+/* =====================================================
+   BODY
+===================================================== */
 
 body {
+
     font-family: "Poppins", sans-serif;
+
     background: #f6faf8;
+
     color: var(--text);
+
 }
 
 
-/* =========================================
+/* =====================================================
    LAYOUT
-========================================= */
+===================================================== */
 
 .app-layout {
+
     min-height: 100vh;
+
     display: flex;
+
 }
 
 
-/* =========================================
+/* =====================================================
    SIDEBAR
-========================================= */
+===================================================== */
 
 .sidebar {
 
@@ -59,12 +89,19 @@ body {
     position: fixed;
 
     left: 0;
+
     top: 0;
+
     bottom: 0;
+
+    z-index: 100;
+
 }
 
 
-/* LOGO */
+/* =====================================================
+   LOGO
+===================================================== */
 
 .sidebar-logo {
 
@@ -75,12 +112,14 @@ body {
     gap: 12px;
 
     padding: 5px 10px 30px;
+
 }
 
 
 .logo-box {
 
     width: 43px;
+
     height: 43px;
 
     background: var(--green);
@@ -92,6 +131,7 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-size: 25px;
@@ -100,6 +140,7 @@ body {
 
     box-shadow:
         0 7px 18px rgba(7, 139, 69, .15);
+
 }
 
 
@@ -130,10 +171,9 @@ body {
 }
 
 
-
-/* =========================================
+/* =====================================================
    NAVIGATION
-========================================= */
+===================================================== */
 
 .sidebar-nav {
 
@@ -142,6 +182,7 @@ body {
     flex-direction: column;
 
     gap: 5px;
+
 }
 
 
@@ -168,6 +209,7 @@ body {
     font-weight: 500;
 
     transition: .2s ease;
+
 }
 
 
@@ -176,6 +218,7 @@ body {
     background: var(--light-green);
 
     color: var(--green);
+
 }
 
 
@@ -186,6 +229,7 @@ body {
     color: var(--green);
 
     font-weight: 600;
+
 }
 
 
@@ -196,13 +240,13 @@ body {
     text-align: center;
 
     font-size: 18px;
+
 }
 
 
-
-/* =========================================
+/* =====================================================
    TRAVEL SAFE
-========================================= */
+===================================================== */
 
 .travel-safe {
 
@@ -215,12 +259,14 @@ body {
     border: 1px solid #dcefe2;
 
     border-radius: 13px;
+
 }
 
 
 .safe-icon {
 
     width: 36px;
+
     height: 36px;
 
     border-radius: 50%;
@@ -232,11 +278,13 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-size: 18px;
 
     margin-bottom: 10px;
+
 }
 
 
@@ -245,6 +293,7 @@ body {
     font-size: 13px;
 
     margin-bottom: 7px;
+
 }
 
 
@@ -257,6 +306,7 @@ body {
     color: #65736c;
 
     margin-bottom: 10px;
+
 }
 
 
@@ -269,13 +319,13 @@ body {
     font-weight: 600;
 
     text-decoration: none;
+
 }
 
 
-
-/* =========================================
+/* =====================================================
    LOGOUT
-========================================= */
+===================================================== */
 
 .logout-button {
 
@@ -300,13 +350,20 @@ body {
     font-family: inherit;
 
     font-size: 12px;
+
 }
 
 
+.logout-button:hover {
 
-/* =========================================
+    color: #c84d45;
+
+}
+
+
+/* =====================================================
    MAIN AREA
-========================================= */
+===================================================== */
 
 .main-area {
 
@@ -315,13 +372,13 @@ body {
     width: calc(100% - 235px);
 
     min-height: 100vh;
+
 }
 
 
-
-/* =========================================
+/* =====================================================
    TOPBAR
-========================================= */
+===================================================== */
 
 .topbar {
 
@@ -338,6 +395,7 @@ body {
     justify-content: space-between;
 
     padding: 0 35px;
+
 }
 
 
@@ -348,6 +406,7 @@ body {
     font-size: 21px;
 
     font-weight: 600;
+
 }
 
 
@@ -358,6 +417,7 @@ body {
     align-items: center;
 
     gap: 25px;
+
 }
 
 
@@ -372,6 +432,7 @@ body {
     cursor: pointer;
 
     color: #26322d;
+
 }
 
 
@@ -382,12 +443,14 @@ body {
     align-items: center;
 
     gap: 10px;
+
 }
 
 
 .top-user-avatar {
 
     width: 42px;
+
     height: 42px;
 
     border-radius: 50%;
@@ -399,9 +462,24 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-weight: 600;
+
+    overflow: hidden;
+
+}
+
+
+.top-user-avatar img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
 }
 
 
@@ -410,6 +488,7 @@ body {
     display: block;
 
     font-size: 12px;
+
 }
 
 
@@ -420,64 +499,26 @@ body {
     color: var(--muted);
 
     font-size: 9px;
+
 }
 
 
-
-/* =========================================
+/* =====================================================
    CONTENT
-========================================= */
+===================================================== */
 
 .content {
 
     padding: 45px 55px;
 
     min-height: calc(100vh - 75px);
+
 }
 
 
-.profile-heading {
-
-    margin-bottom: 28px;
-}
-
-
-.profile-heading > span {
-
-    color: var(--green);
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 2px;
-}
-
-
-.profile-heading h1 {
-
-    margin-top: 5px;
-
-    font-size: 31px;
-
-    font-weight: 600;
-}
-
-
-.profile-heading p {
-
-    color: var(--muted);
-
-    font-size: 13px;
-
-    margin-top: 4px;
-}
-
-
-
-/* =========================================
+/* =====================================================
    PROFILE WRAPPER
-========================================= */
+===================================================== */
 
 .profile-wrapper {
 
@@ -486,8 +527,13 @@ body {
     justify-content: center;
 
     width: 100%;
+
 }
 
+
+/* =====================================================
+   PROFILE CARD
+===================================================== */
 
 .profile-card {
 
@@ -505,25 +551,27 @@ body {
 
     box-shadow:
         0 8px 30px rgba(20, 70, 40, .04);
+
 }
 
 
-
-/* =========================================
+/* =====================================================
    PROFILE TOP
-========================================= */
+===================================================== */
 
 .profile-top {
 
     text-align: center;
 
     padding-bottom: 25px;
+
 }
 
 
 .profile-photo {
 
     width: 100px;
+
     height: 100px;
 
     border-radius: 50%;
@@ -535,6 +583,7 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     margin: 0 auto 14px;
@@ -549,15 +598,18 @@ body {
 
     box-shadow:
         0 4px 18px rgba(0, 80, 40, .12);
+
 }
 
 
 .profile-photo img {
 
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
+
 }
 
 
@@ -566,6 +618,7 @@ body {
     font-size: 21px;
 
     font-weight: 600;
+
 }
 
 
@@ -576,6 +629,7 @@ body {
     font-size: 11px;
 
     margin-top: 3px;
+
 }
 
 
@@ -596,74 +650,13 @@ body {
     font-size: 9px;
 
     font-weight: 600;
+
 }
 
 
-
-/* =========================================
-   STATS
-========================================= */
-
-.stats {
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    margin-bottom: 18px;
-}
-
-
-.stat {
-
-    text-align: center;
-
-    padding: 15px 8px;
-
-    border-right: 1px solid var(--border);
-}
-
-
-.stat:last-child {
-
-    border-right: none;
-}
-
-
-.stat strong {
-
-    display: block;
-
-    color: var(--green);
-
-    font-size: 19px;
-
-    font-weight: 600;
-}
-
-
-.stat span {
-
-    display: block;
-
-    margin-top: 3px;
-
-    color: var(--muted);
-
-    font-size: 9px;
-}
-
-
-
-/* =========================================
-   MENU
-========================================= */
+/* =====================================================
+   PROFILE MENU
+===================================================== */
 
 .profile-menu {
 
@@ -672,6 +665,7 @@ body {
     border-radius: 10px;
 
     overflow: hidden;
+
 }
 
 
@@ -702,24 +696,28 @@ body {
     font-family: inherit;
 
     transition: .2s;
+
 }
 
 
 .menu-item:last-child {
 
     border-bottom: none;
+
 }
 
 
 .menu-item:hover {
 
     background: var(--light-green);
+
 }
 
 
 .menu-icon {
 
     width: 35px;
+
     height: 35px;
 
     border-radius: 8px;
@@ -731,11 +729,13 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     flex-shrink: 0;
 
     font-size: 14px;
+
 }
 
 
@@ -748,6 +748,7 @@ body {
     flex-direction: column;
 
     gap: 2px;
+
 }
 
 
@@ -758,6 +759,7 @@ body {
     font-weight: 600;
 
     color: var(--text);
+
 }
 
 
@@ -766,6 +768,7 @@ body {
     font-size: 9px;
 
     color: var(--muted);
+
 }
 
 
@@ -774,13 +777,13 @@ body {
     color: #a2aaa6;
 
     font-size: 22px;
+
 }
 
 
-
-/* =========================================
-   EDIT
-========================================= */
+/* =====================================================
+   EDIT PROFILE BUTTON
+===================================================== */
 
 .edit-profile-button {
 
@@ -807,37 +810,769 @@ body {
     cursor: pointer;
 
     transition: .2s;
+
 }
 
 
 .edit-profile-button:hover {
 
     background: var(--dark-green);
+
+    transform: translateY(-1px);
+
 }
 
 
+/* =====================================================
+   EDIT PROFILE MODAL OVERLAY
+===================================================== */
 
-/* =========================================
+.edit-modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 35, 25, .48);
+
+    backdrop-filter: blur(7px);
+
+    -webkit-backdrop-filter: blur(7px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    z-index: 9999;
+
+}
+
+
+.edit-modal-overlay.show {
+
+    display: flex;
+
+}
+
+
+/* =====================================================
+   EDIT PROFILE MODAL
+===================================================== */
+
+.edit-profile-modal {
+
+    width: min(660px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 50, 25, .22);
+
+    animation: editModalIn .25s ease;
+
+}
+
+
+@keyframes editModalIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px) scale(.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.edit-modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+
+}
+
+
+.edit-modal-header h2 {
+
+    font-size: 23px;
+
+    color: #17201d;
+
+    font-weight: 600;
+
+}
+
+
+.edit-modal-header p {
+
+    margin-top: 3px;
+
+    color: #7a8580;
+
+    font-size: 12px;
+
+}
+
+
+.close-modal {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #edf8f1;
+
+    color: var(--green);
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: .2s;
+
+}
+
+
+.close-modal:hover {
+
+    background: var(--green);
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   PHOTO SECTION
+===================================================== */
+
+.edit-photo-section {
+
+    background: #f5faf7;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.edit-photo {
+
+    width: 76px;
+
+    height: 76px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 28px;
+
+    font-weight: 600;
+
+    overflow: hidden;
+
+}
+
+
+.edit-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.photo-actions {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.change-picture {
+
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.change-picture:hover {
+
+    text-decoration: underline;
+
+}
+
+
+.delete-picture {
+
+    border: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    text-align: left;
+
+    color: #c64c45;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.delete-picture:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.edit-form-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 17px;
+
+}
+
+
+.edit-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.edit-field.full-width {
+
+    grid-column: 1 / -1;
+
+}
+
+
+.edit-field label {
+
+    color: #43504a;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+.edit-field input,
+.edit-field select {
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #dce6e0;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #17201d;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    outline: none;
+
+    transition: .2s;
+
+}
+
+
+.edit-field input:focus,
+.edit-field select:focus {
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 3px rgba(7, 139, 69, .08);
+
+}
+
+
+.edit-field input:disabled {
+
+    background: #f3f6f4;
+
+    color: #7a8580;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.edit-profile-error {
+
+    min-height: 18px;
+
+    margin-top: 12px;
+
+    color: #c64c45;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+}
+
+
+/* =====================================================
+   MODAL FOOTER
+===================================================== */
+
+.edit-modal-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e3ebe6;
+
+}
+
+
+.cancel-edit-button,
+.save-profile-button {
+
+    height: 40px;
+
+    padding: 0 20px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.cancel-edit-button {
+
+    background: white;
+
+    color: var(--green);
+
+    border: 1px solid #b9d8c5;
+
+}
+
+
+.cancel-edit-button:hover {
+
+    background: #edf8f1;
+
+}
+
+
+.save-profile-button {
+
+    background: var(--green);
+
+    color: white;
+
+    border: 1px solid var(--green);
+
+}
+
+
+.save-profile-button:hover {
+
+    background: var(--dark-green);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+html.dark-mode .sidebar {
+
+    background: #111814;
+
+    border-color: #29352e;
+
+}
+
+
+html.dark-mode .logo-text strong {
+
+    color: #edf5ef;
+
+}
+
+
+html.dark-mode .nav-item {
+
+    color: #d4dfd8;
+
+}
+
+
+html.dark-mode .nav-item:hover,
+html.dark-mode .nav-item.active {
+
+    background: #20372a;
+
+    color: #6fda99;
+
+}
+
+
+html.dark-mode .travel-safe {
+
+    background: #18261d;
+
+    border-color: #304438;
+
+}
+
+
+html.dark-mode .travel-safe p {
+
+    color: #a5b2aa;
+
+}
+
+
+html.dark-mode .logout-button {
+
+    color: #a8b3ad;
+
+}
+
+
+html.dark-mode .main-area {
+
+    background: #101612;
+
+}
+
+
+html.dark-mode .topbar {
+
+    background: #151d18;
+
+    border-color: #29352e;
+
+}
+
+
+html.dark-mode .topbar h2 {
+
+    color: #6fda99;
+
+}
+
+
+html.dark-mode .notification-button {
+
+    color: #dce8e0;
+
+}
+
+
+html.dark-mode .top-user strong {
+
+    color: #edf5ef;
+
+}
+
+
+html.dark-mode .content {
+
+    background: #101612;
+
+}
+
+
+html.dark-mode .profile-card {
+
+    background: #18201b;
+
+    border-color: #303c35;
+
+}
+
+
+html.dark-mode .profile-top h2 {
+
+    color: #edf5ef;
+
+}
+
+
+html.dark-mode .profile-menu {
+
+    border-color: #303c35;
+
+}
+
+
+html.dark-mode .menu-item {
+
+    background: #18201b;
+
+    border-color: #303c35;
+
+}
+
+
+html.dark-mode .menu-item:hover {
+
+    background: #20372a;
+
+}
+
+
+html.dark-mode .menu-content strong {
+
+    color: #edf5ef;
+
+}
+
+
+html.dark-mode .menu-content span {
+
+    color: #9daaa2;
+
+}
+
+
+/* =====================================================
+   DARK MODE - EDIT MODAL
+===================================================== */
+
+html.dark-mode .edit-profile-modal {
+
+    background: #19201c;
+
+    color: #edf5ef;
+
+}
+
+
+html.dark-mode .edit-modal-header h2 {
+
+    color: #edf5ef;
+
+}
+
+
+html.dark-mode .edit-modal-header p {
+
+    color: #9daaa2;
+
+}
+
+
+html.dark-mode .edit-photo-section {
+
+    background: #202923;
+
+}
+
+
+html.dark-mode .edit-field label {
+
+    color: #cbd8cf;
+
+}
+
+
+html.dark-mode .edit-field input,
+html.dark-mode .edit-field select {
+
+    background: #202923;
+
+    color: #edf5ef;
+
+    border-color: #3a473f;
+
+}
+
+
+html.dark-mode .edit-field input:disabled {
+
+    background: #18201b;
+
+    color: #7f8c84;
+
+}
+
+
+html.dark-mode .edit-modal-footer {
+
+    border-color: #303b34;
+
+}
+
+
+html.dark-mode .cancel-edit-button {
+
+    background: transparent;
+
+    color: #75d69d;
+
+    border-color: #405048;
+
+}
+
+
+html.dark-mode .close-modal {
+
+    background: #20352a;
+
+}
+
+
+/* =====================================================
    RESPONSIVE
-========================================= */
+===================================================== */
 
 @media (max-width: 800px) {
 
     .sidebar {
 
         width: 190px;
+
     }
+
 
     .main-area {
 
         margin-left: 190px;
 
         width: calc(100% - 190px);
+
     }
+
 
     .content {
 
         padding: 35px 25px;
+
     }
 
 }
@@ -848,28 +1583,75 @@ body {
     .sidebar {
 
         display: none;
+
     }
+
 
     .main-area {
 
         margin-left: 0;
 
         width: 100%;
+
     }
+
 
     .content {
 
         padding: 30px 15px;
+
     }
+
 
     .topbar {
 
         padding: 0 18px;
+
     }
+
 
     .top-user > div:last-child {
 
         display: none;
+
+    }
+
+
+    .edit-profile-modal {
+
+        padding: 20px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .edit-form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .edit-field.full-width {
+
+        grid-column: auto;
+
+    }
+
+
+    .edit-modal-footer {
+
+        flex-direction: column-reverse;
+
+    }
+
+
+    .cancel-edit-button,
+    .save-profile-button {
+
+        width: 100%;
+
     }
 
 }

@@ -1841,10 +1841,10 @@ if (messagesNav) {
 
             event.preventDefault();
 
-            alert(
+            showMessagge(
                 "Messages feature is coming soon."
-            );
-
+            )
+            
         }
     );
 

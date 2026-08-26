@@ -1,16 +1,21 @@
+/* =====================================================
+   PROFILE PAGE
+===================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
 
     loadProfile();
 
     loadStatistics();
 
+    setupProfileImage();
+
 });
 
 
-
-/* =========================================
+/* =====================================================
    GET CURRENT USER
-========================================= */
+===================================================== */
 
 function getCurrentUser() {
 
@@ -23,29 +28,35 @@ function getCurrentUser() {
 
     for (const key of keys) {
 
-        const data = localStorage.getItem(key);
+        const data =
+            localStorage.getItem(key);
 
         if (!data) continue;
 
 
         try {
 
-            const user = JSON.parse(data);
+            const user =
+                JSON.parse(data);
 
             if (user) {
+
                 return user;
+
             }
 
-        } catch (error) {
+        }
 
-            console.log("Invalid user data");
+        catch (error) {
+
+            console.log(
+                "Invalid user data"
+            );
 
         }
 
     }
 
-
-    /* Use the values saved by your login/signup */
 
     const name =
         localStorage.getItem("userName");
@@ -58,7 +69,8 @@ function getCurrentUser() {
 
         return {
 
-            name: name || "Student",
+            name:
+                name || "Student",
 
             email:
                 email ||
@@ -74,32 +86,100 @@ function getCurrentUser() {
 }
 
 
+/* =====================================================
+   SAVE CURRENT USER
+===================================================== */
 
-/* =========================================
+function saveCurrentUser(user) {
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user)
+    );
+
+
+    localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify(user)
+    );
+
+
+    localStorage.setItem(
+        "userName",
+        user.name || "Student"
+    );
+
+
+    localStorage.setItem(
+        "userEmail",
+        user.email || ""
+    );
+
+}
+
+
+/* =====================================================
    LOAD PROFILE
-========================================= */
+===================================================== */
 
 function loadProfile() {
 
-    const user = getCurrentUser();
+    const user =
+        getCurrentUser();
+
+
+    const profileName =
+        document.getElementById(
+            "profileName"
+        );
+
+    const profileEmail =
+        document.getElementById(
+            "profileEmail"
+        );
+
+    const profilePhoto =
+        document.getElementById(
+            "profilePhoto"
+        );
+
+    const topUserName =
+        document.getElementById(
+            "topUserName"
+        );
+
+    const topUserAvatar =
+        document.getElementById(
+            "topUserAvatar"
+        );
 
 
     if (!user) {
 
-        document.getElementById("profileName")
-            .textContent = "Student";
+        if (profileName)
+            profileName.textContent =
+                "Student";
 
-        document.getElementById("profileEmail")
-            .textContent = "No account data";
 
-        document.getElementById("profilePhoto")
-            .textContent = "?";
+        if (profileEmail)
+            profileEmail.textContent =
+                "No account data";
 
-        document.getElementById("topUserName")
-            .textContent = "Student";
 
-        document.getElementById("topUserAvatar")
-            .textContent = "?";
+        if (profilePhoto)
+            profilePhoto.textContent =
+                "?";
+
+
+        if (topUserName)
+            topUserName.textContent =
+                "Student";
+
+
+        if (topUserAvatar)
+            topUserAvatar.textContent =
+                "?";
+
 
         return;
 
@@ -119,20 +199,30 @@ function loadProfile() {
 
     /* NAME */
 
-    document.getElementById("profileName")
-        .textContent = name;
+    if (profileName) {
+
+        profileName.textContent =
+            name;
+
+    }
 
 
-    document.getElementById("topUserName")
-        .textContent = name;
+    if (topUserName) {
 
+        topUserName.textContent =
+            name;
+
+    }
 
 
     /* EMAIL */
 
-    document.getElementById("profileEmail")
-        .textContent = email;
+    if (profileEmail) {
 
+        profileEmail.textContent =
+            email;
+
+    }
 
 
     /* PHOTO */
@@ -144,241 +234,627 @@ function loadProfile() {
 
     if (photo) {
 
-        document.getElementById("profilePhoto")
-            .innerHTML =
-            `<img src="${photo}" alt="Profile photo">`;
+        if (profilePhoto) {
+
+            profilePhoto.innerHTML =
+                `<img
+                    src="${photo}"
+                    alt="Profile photo"
+                >`;
+
+        }
 
 
-        document.getElementById("topUserAvatar")
-            .innerHTML =
-            `<img src="${photo}" alt="Profile photo">`;
+        if (topUserAvatar) {
+
+            topUserAvatar.innerHTML =
+                `<img
+                    src="${photo}"
+                    alt="Profile photo"
+                >`;
+
+        }
 
     }
 
     else {
 
         const initial =
-            name.charAt(0).toUpperCase();
+            name.charAt(0)
+                .toUpperCase();
 
 
-        document.getElementById("profilePhoto")
-            .textContent = initial;
+        if (profilePhoto) {
+
+            profilePhoto.textContent =
+                initial;
+
+        }
 
 
-        document.getElementById("topUserAvatar")
-            .textContent = initial;
+        if (topUserAvatar) {
+
+            topUserAvatar.textContent =
+                initial;
+
+        }
 
     }
 
 }
 
 
-
-/* =========================================
+/* =====================================================
    STATISTICS
-========================================= */
+===================================================== */
 
 function loadStatistics() {
 
     /*
-       IMPORTANT:
+        No fake statistics are displayed.
 
-       We don't put fake numbers here.
-
-       If there are no rides:
-       Rides Taken = 0
-       Rides Offered = 0
-       Rating = —
+        This function is kept so that if your
+        project later stores actual ride data,
+        it can be used.
     */
-
-
-    let ridesTaken = 0;
-
-    let ridesOffered = 0;
-
-
-    /* Requested / booked rides */
-
-    const requestedKeys = [
-
-        "myRides",
-
-        "requestedRides",
-
-        "bookedRides"
-
-    ];
-
-
-    for (const key of requestedKeys) {
-
-        const data =
-            localStorage.getItem(key);
-
-
-        if (!data) continue;
-
-
-        try {
-
-            const rides =
-                JSON.parse(data);
-
-
-            if (Array.isArray(rides)) {
-
-                ridesTaken =
-                    rides.length;
-
-                break;
-
-            }
-
-        } catch (error) {
-
-            console.log(error);
-
-        }
-
-    }
-
-
-
-    /* Posted rides */
-
-    const offeredKeys = [
-
-        "offeredRides",
-
-        "postedRides",
-
-        "myPostedRides"
-
-    ];
-
-
-    for (const key of offeredKeys) {
-
-        const data =
-            localStorage.getItem(key);
-
-
-        if (!data) continue;
-
-
-        try {
-
-            const rides =
-                JSON.parse(data);
-
-
-            if (Array.isArray(rides)) {
-
-                ridesOffered =
-                    rides.length;
-
-                break;
-
-            }
-
-        } catch (error) {
-
-            console.log(error);
-
-        }
-
-    }
-
-
-    document.getElementById("ridesTaken")
-        .textContent = ridesTaken;
-
-
-    document.getElementById("ridesOffered")
-        .textContent = ridesOffered;
-
-
-    /*
-       Rating is NOT fake.
-
-       Only display it if an actual
-       rating exists in localStorage.
-    */
-
-    const user = getCurrentUser();
-
-
-    if (
-        user &&
-        user.rating !== undefined &&
-        user.rating !== null
-    ) {
-
-        document.getElementById("rating")
-            .textContent = user.rating;
-
-    }
-
-    else {
-
-        document.getElementById("rating")
-            .textContent = "—";
-
-    }
 
 }
 
 
-
-/* =========================================
-   EDIT PROFILE
-========================================= */
+/* =====================================================
+   OPEN EDIT PROFILE
+===================================================== */
 
 function editProfile() {
 
-    const user = getCurrentUser();
+    const user =
+        getCurrentUser();
 
 
     if (!user) {
 
-        alert("Please login first.");
+        alert(
+            "Please login first."
+        );
 
         return;
 
     }
 
 
-    const newName =
-        prompt(
-            "Enter your name:",
-            user.name || ""
-        );
+    /* NAME */
+
+    document.getElementById(
+        "editName"
+    ).value =
+        user.name ||
+        user.fullName ||
+        "";
 
 
-    if (!newName) return;
+    /* EMAIL */
+
+    document.getElementById(
+        "editEmail"
+    ).value =
+        user.email ||
+        "";
 
 
-    const name =
-        newName.trim();
+    /* PHONE */
+
+    document.getElementById(
+        "editPhone"
+    ).value =
+        user.phone ||
+        user.phoneNumber ||
+        "";
 
 
-    if (!name) return;
+    /* DEPARTMENT */
+
+    document.getElementById(
+        "editDepartment"
+    ).value =
+        user.department ||
+        "";
 
 
-    user.name = name;
+    /* YEAR */
+
+    document.getElementById(
+        "editYear"
+    ).value =
+        user.year ||
+        "";
 
 
-    /* Save everywhere your project uses */
+    /* GENDER */
 
-    localStorage.setItem(
-        "currentUser",
-        JSON.stringify(user)
+    document.getElementById(
+        "editGender"
+    ).value =
+        user.gender ||
+        "";
+
+
+    /* ADDRESS */
+
+    document.getElementById(
+        "editAddress"
+    ).value =
+        user.address ||
+        "";
+
+
+    /* STUDENT ID */
+
+    document.getElementById(
+        "editStudentId"
+    ).value =
+        user.studentId ||
+        user.studentID ||
+        "";
+
+
+    /* PHOTO */
+
+    updateEditPhotoPreview(
+        user.photo ||
+        user.profilePhoto ||
+        null
     );
 
 
-    localStorage.setItem(
-        "userName",
-        name
+    /* REMOVE ERROR */
+
+    document.getElementById(
+        "editProfileError"
+    ).textContent =
+        "";
+
+
+    /* OPEN MODAL */
+
+    document.getElementById(
+        "editProfileModal"
+    ).classList.add("show");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =====================================================
+   CLOSE EDIT PROFILE
+===================================================== */
+
+function closeEditProfile() {
+
+    const modal =
+        document.getElementById(
+            "editProfileModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =====================================================
+   SAVE PROFILE CHANGES
+===================================================== */
+
+function saveProfileChanges(event) {
+
+    event.preventDefault();
+
+
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "editName"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "editPhone"
+        ).value.trim();
+
+
+    const department =
+        document.getElementById(
+            "editDepartment"
+        ).value.trim();
+
+
+    const year =
+        document.getElementById(
+            "editYear"
+        ).value;
+
+
+    const gender =
+        document.getElementById(
+            "editGender"
+        ).value;
+
+
+    const address =
+        document.getElementById(
+            "editAddress"
+        ).value.trim();
+
+
+    const studentId =
+        document.getElementById(
+            "editStudentId"
+        ).value.trim();
+
+
+    const errorElement =
+        document.getElementById(
+            "editProfileError"
+        );
+
+
+    /* =================================================
+       VALIDATION
+    ================================================= */
+
+    if (!name) {
+
+        errorElement.textContent =
+            "Please enter your full name.";
+
+        return;
+
+    }
+
+
+    if (
+        phone &&
+        !/^[0-9]{10}$/.test(phone)
+    ) {
+
+        errorElement.textContent =
+            "Phone number must contain 10 digits.";
+
+        return;
+
+    }
+
+
+    if (!department) {
+
+        errorElement.textContent =
+            "Please enter your department.";
+
+        return;
+
+    }
+
+
+    if (!year) {
+
+        errorElement.textContent =
+            "Please select your year.";
+
+        return;
+
+    }
+
+
+    if (!gender) {
+
+        errorElement.textContent =
+            "Please select your gender.";
+
+        return;
+
+    }
+
+
+    if (!address) {
+
+        errorElement.textContent =
+            "Please enter your address.";
+
+        return;
+
+    }
+
+
+    if (!studentId) {
+
+        errorElement.textContent =
+            "Please enter your student ID.";
+
+        return;
+
+    }
+
+
+    /* =================================================
+       UPDATE USER
+    ================================================= */
+
+    user.name =
+        name;
+
+    user.fullName =
+        name;
+
+    user.phone =
+        phone;
+
+    user.phoneNumber =
+        phone;
+
+    user.department =
+        department;
+
+    user.year =
+        year;
+
+    user.gender =
+        gender;
+
+    user.address =
+        address;
+
+    user.studentId =
+        studentId;
+
+    user.studentID =
+        studentId;
+
+
+    /* =================================================
+       SAVE
+    ================================================= */
+
+    saveCurrentUser(user);
+
+
+    /* =================================================
+       UPDATE PROFILE PAGE
+    ================================================= */
+
+    loadProfile();
+
+
+    /* =================================================
+       CLOSE MODAL
+    ================================================= */
+
+    closeEditProfile();
+
+
+    /* =================================================
+       SUCCESS
+    ================================================= */
+
+    setTimeout(() => {
+
+        alert(
+            "Profile updated successfully!"
+        );
+
+    }, 150);
+
+}
+
+
+/* =====================================================
+   PROFILE IMAGE SETUP
+===================================================== */
+
+function setupProfileImage() {
+
+    const input =
+        document.getElementById(
+            "profileImageInput"
+        );
+
+
+    if (!input) return;
+
+
+    input.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files[0];
+
+
+            if (!file) {
+
+                return;
+
+            }
+
+
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                alert(
+                    "Please select an image file."
+                );
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    const image =
+                        event.target.result;
+
+
+                    const user =
+                        getCurrentUser();
+
+
+                    if (!user) {
+
+                        return;
+
+                    }
+
+
+                    user.photo =
+                        image;
+
+                    user.profilePhoto =
+                        image;
+
+
+                    saveCurrentUser(
+                        user
+                    );
+
+
+                    updateEditPhotoPreview(
+                        image
+                    );
+
+
+                    loadProfile();
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE EDIT PHOTO PREVIEW
+===================================================== */
+
+function updateEditPhotoPreview(
+    photo
+) {
+
+    const preview =
+        document.getElementById(
+            "editPhotoPreview"
+        );
+
+
+    if (!preview) {
+
+        return;
+
+    }
+
+
+    const user =
+        getCurrentUser();
+
+
+    const name =
+        user &&
+        (
+            user.name ||
+            user.fullName
+        )
+            ? (
+                user.name ||
+                user.fullName
+            )
+            : "Student";
+
+
+    if (photo) {
+
+        preview.innerHTML =
+            `<img
+                src="${photo}"
+                alt="Profile photo"
+            >`;
+
+    }
+
+    else {
+
+        preview.textContent =
+            name.charAt(0)
+                .toUpperCase();
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE PROFILE PICTURE
+===================================================== */
+
+function deleteProfilePicture() {
+
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    delete user.photo;
+
+    delete user.profilePhoto;
+
+
+    saveCurrentUser(
+        user
+    );
+
+
+    updateEditPhotoPreview(
+        null
     );
 
 
@@ -387,10 +863,56 @@ function editProfile() {
 }
 
 
+/* =====================================================
+   CLICK OUTSIDE MODAL
+===================================================== */
 
-/* =========================================
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const modal =
+            document.getElementById(
+                "editProfileModal"
+            );
+
+
+        if (
+            modal &&
+            event.target === modal
+        ) {
+
+            closeEditProfile();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeEditProfile();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
    NAVIGATION
-========================================= */
+===================================================== */
 
 function openMyRides() {
 
@@ -430,13 +952,14 @@ function openHelp() {
 function openSettings(event) {
 
     if (event) {
+
         event.preventDefault();
+
     }
 
 
-    alert(
-        "Settings page will be connected here."
-    );
+    window.location.href =
+        "setting.html";
 
 }
 
@@ -444,12 +967,14 @@ function openSettings(event) {
 function openMessages(event) {
 
     if (event) {
+
         event.preventDefault();
+
     }
 
 
     alert(
-        "Messages page will be connected here."
+        "Messages will be connected here."
     );
 
 }
@@ -458,7 +983,9 @@ function openMessages(event) {
 function openNotifications(event) {
 
     if (event) {
+
         event.preventDefault();
+
     }
 
 
@@ -469,22 +996,31 @@ function openNotifications(event) {
 }
 
 
-
-/* =========================================
+/* =====================================================
    LOGOUT
-========================================= */
+===================================================== */
 
 function logout() {
 
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem(
+        "currentUser"
+    );
 
-    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem(
+        "loggedInUser"
+    );
 
-    localStorage.removeItem("user");
+    localStorage.removeItem(
+        "user"
+    );
 
-    localStorage.removeItem("userName");
+    localStorage.removeItem(
+        "userName"
+    );
 
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem(
+        "userEmail"
+    );
 
 
     window.location.href =

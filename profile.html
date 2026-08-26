@@ -12,12 +12,23 @@
 
     <title>Profile - Chitkara Carpool</title>
 
+    <!-- GOOGLE FONT -->
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="profile.css">
+    <!-- PROFILE CSS -->
+    <link
+        rel="stylesheet"
+        href="profile.css"
+    >
+
+    <!-- THEME CSS -->
+    <link
+        rel="stylesheet"
+        href="theme.css"
+    >
 
 </head>
 
@@ -28,9 +39,9 @@
 <div class="app-layout">
 
 
-    <!-- =========================================
+    <!-- =================================================
          SIDEBAR
-    ========================================== -->
+    ================================================== -->
 
     <aside class="sidebar">
 
@@ -58,11 +69,12 @@
         </div>
 
 
-
         <!-- NAVIGATION -->
 
         <nav class="sidebar-nav">
 
+
+            <!-- HOME -->
 
             <a
                 href="dashboard.html"
@@ -80,6 +92,7 @@
             </a>
 
 
+            <!-- FIND RIDE -->
 
             <a
                 href="dashboard.html#find-ride"
@@ -97,6 +110,7 @@
             </a>
 
 
+            <!-- POST RIDE -->
 
             <a
                 href="postride.html"
@@ -114,6 +128,7 @@
             </a>
 
 
+            <!-- MY RIDES -->
 
             <a
                 href="myride.html"
@@ -131,6 +146,7 @@
             </a>
 
 
+            <!-- MESSAGES -->
 
             <a
                 href="#"
@@ -149,6 +165,7 @@
             </a>
 
 
+            <!-- NOTIFICATIONS -->
 
             <a
                 href="#"
@@ -167,6 +184,7 @@
             </a>
 
 
+            <!-- PROFILE -->
 
             <a
                 href="profile.html"
@@ -184,11 +202,11 @@
             </a>
 
 
+            <!-- SETTINGS -->
 
             <a
-                href="#"
+                href="setting.html"
                 class="nav-item"
-                onclick="openSettings(event)"
             >
 
                 <span class="nav-icon">
@@ -205,8 +223,9 @@
         </nav>
 
 
-
-        <!-- TRAVEL SAFE -->
+        <!-- =================================================
+             TRAVEL SAFE
+        ================================================== -->
 
         <div class="travel-safe">
 
@@ -231,7 +250,6 @@
         </div>
 
 
-
         <!-- LOGOUT -->
 
         <button
@@ -252,14 +270,16 @@
 
 
 
-    <!-- =========================================
+    <!-- =================================================
          MAIN AREA
-    ========================================== -->
+    ================================================== -->
 
     <div class="main-area">
 
 
-        <!-- TOP BAR -->
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
 
         <header class="topbar">
 
@@ -276,13 +296,17 @@
             <div class="topbar-right">
 
 
+                <!-- NOTIFICATION -->
+
                 <button
                     class="notification-button"
-                    onclick="openNotifications()"
+                    onclick="openNotifications(event)"
                 >
                     ♧
                 </button>
 
+
+                <!-- USER -->
 
                 <div class="top-user">
 
@@ -318,24 +342,24 @@
 
 
 
-        <!-- =========================================
+        <!-- =================================================
              PROFILE CONTENT
-        ========================================== -->
+        ================================================== -->
 
         <main class="content">
-
-
-
-
 
 
             <div class="profile-wrapper">
 
 
-                <!-- PROFILE CARD -->
+                <!-- =================================================
+                     PROFILE CARD
+                ================================================== -->
 
                 <section class="profile-card">
 
+
+                    <!-- PROFILE -->
 
                     <div class="profile-top">
 
@@ -366,16 +390,14 @@
                     </div>
 
 
-
-                    <!-- STATS -->
-
-                   
-
-
-                    <!-- MENU -->
+                    <!-- =================================================
+                         PROFILE MENU
+                    ================================================== -->
 
                     <div class="profile-menu">
 
+
+                        <!-- MY RIDES -->
 
                         <button
                             class="menu-item"
@@ -405,6 +427,7 @@
                         </button>
 
 
+                        <!-- PAYMENT -->
 
                         <button
                             class="menu-item"
@@ -434,6 +457,7 @@
                         </button>
 
 
+                        <!-- CONTACTS -->
 
                         <button
                             class="menu-item"
@@ -463,6 +487,7 @@
                         </button>
 
 
+                        <!-- HELP -->
 
                         <button
                             class="menu-item"
@@ -492,6 +517,7 @@
                         </button>
 
 
+                        <!-- SETTINGS -->
 
                         <button
                             class="menu-item"
@@ -524,7 +550,9 @@
                     </div>
 
 
-                    <!-- EDIT PROFILE -->
+                    <!-- =================================================
+                         EDIT PROFILE BUTTON
+                    ================================================== -->
 
                     <button
                         class="edit-profile-button"
@@ -549,7 +577,345 @@
 </div>
 
 
+
+<!-- =========================================================
+     EDIT PROFILE MODAL
+========================================================= -->
+
+<div
+    id="editProfileModal"
+    class="edit-modal-overlay"
+>
+
+
+    <div class="edit-profile-modal">
+
+
+        <!-- =================================================
+             MODAL HEADER
+        ================================================== -->
+
+        <div class="edit-modal-header">
+
+
+            <div>
+
+                <h2>
+                    Edit Profile
+                </h2>
+
+                <p>
+                    Update your personal information
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="closeEditProfile()"
+            >
+                ×
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PHOTO
+        ================================================== -->
+
+        <div class="edit-photo-section">
+
+
+            <div
+                class="edit-photo"
+                id="editPhotoPreview"
+            >
+                J
+            </div>
+
+
+            <div class="photo-actions">
+
+
+                <label
+                    for="profileImageInput"
+                    class="change-picture"
+                >
+                    Change Picture
+                </label>
+
+
+                <button
+                    type="button"
+                    class="delete-picture"
+                    onclick="deleteProfilePicture()"
+                >
+                    Delete Picture
+                </button>
+
+
+                <input
+                    type="file"
+                    id="profileImageInput"
+                    accept="image/*"
+                    hidden
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <form
+            id="editProfileForm"
+            onsubmit="saveProfileChanges(event)"
+        >
+
+
+            <div class="edit-form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="edit-field">
+
+                    <label for="editName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="edit-field">
+
+                    <label for="editEmail">
+                        Chitkara Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="editEmail"
+                        disabled
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="edit-field">
+
+                    <label for="editPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="editPhone"
+                        placeholder="Enter phone number"
+                        maxlength="10"
+                    >
+
+                </div>
+
+
+                <!-- DEPARTMENT -->
+
+                <div class="edit-field">
+
+                    <label for="editDepartment">
+                        Department
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editDepartment"
+                        placeholder="e.g. CSE AI & ML"
+                    >
+
+                </div>
+
+
+                <!-- YEAR -->
+
+                <div class="edit-field">
+
+                    <label for="editYear">
+                        Year
+                    </label>
+
+                    <select id="editYear">
+
+                        <option value="">
+                            Select year
+                        </option>
+
+                        <option value="1st Year">
+                            1st Year
+                        </option>
+
+                        <option value="2nd Year">
+                            2nd Year
+                        </option>
+
+                        <option value="3rd Year">
+                            3rd Year
+                        </option>
+
+                        <option value="4th Year">
+                            4th Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="edit-field">
+
+                    <label for="editGender">
+                        Gender
+                    </label>
+
+                    <select id="editGender">
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                        <option value="Prefer not to say">
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="edit-field full-width">
+
+                    <label for="editAddress">
+                        Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editAddress"
+                        placeholder="Enter your address"
+                    >
+
+                </div>
+
+
+                <!-- STUDENT ID -->
+
+                <div class="edit-field">
+
+                    <label for="editStudentId">
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editStudentId"
+                        placeholder="Enter student ID"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <p
+                id="editProfileError"
+                class="edit-profile-error"
+            ></p>
+
+
+            <!-- =================================================
+                 MODAL BUTTONS
+            ================================================== -->
+
+            <div class="edit-modal-footer">
+
+
+                <button
+                    type="button"
+                    class="cancel-edit-button"
+                    onclick="closeEditProfile()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-profile-button"
+                >
+                    Save Changes
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script src="profile.js"></script>
+
+<script src="theme.js"></script>
+
 
 </body>
 

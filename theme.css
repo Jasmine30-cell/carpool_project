@@ -1,0 +1,390 @@
+/* =====================================================
+   GLOBAL DARK MODE
+===================================================== */
+
+html.dark-mode,
+html.dark-mode body {
+
+    background: #101512 !important;
+
+    color: #edf5ef !important;
+
+}
+
+
+/* ===============================
+   COMMON BACKGROUNDS
+================================ */
+
+html.dark-mode main,
+html.dark-mode .main-area,
+html.dark-mode .content,
+html.dark-mode .details-container,
+html.dark-mode .main-container {
+
+    background: #101512 !important;
+
+}
+
+
+/* ===============================
+   CARDS
+================================ */
+
+html.dark-mode .card,
+html.dark-mode .settings-card,
+html.dark-mode .ride-card,
+html.dark-mode .driver-card,
+html.dark-mode .route-card,
+html.dark-mode .info-card,
+html.dark-mode .car-card,
+html.dark-mode .rating-card,
+html.dark-mode .reviews-card,
+html.dark-mode .contact-card,
+html.dark-mode .profile-card,
+html.dark-mode .form-card,
+html.dark-mode .post-card,
+html.dark-mode .dashboard-card {
+
+    background: #19201c !important;
+
+    border-color: #303b34 !important;
+
+    color: #edf5ef !important;
+
+}
+
+
+/* ===============================
+   SIDEBAR
+================================ */
+
+html.dark-mode .sidebar {
+
+    background: #171d19 !important;
+
+    border-color: #303b34 !important;
+
+}
+
+
+html.dark-mode .sidebar-item {
+
+    color: #cbd8cf !important;
+
+}
+
+
+html.dark-mode .sidebar-item:hover {
+
+    background: #223028 !important;
+
+    color: #6fd39a !important;
+
+}
+
+
+html.dark-mode .sidebar-item.active {
+
+    background: #193b29 !important;
+
+    color: #6fd39a !important;
+
+}
+
+
+/* ===============================
+   TOPBAR / NAVBAR
+================================ */
+
+html.dark-mode .topbar,
+html.dark-mode .navbar,
+html.dark-mode .details-header {
+
+    background: #171d19 !important;
+
+    border-color: #303b34 !important;
+
+    color: #edf5ef !important;
+
+}
+
+
+/* ===============================
+   TEXT
+================================ */
+
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode h4,
+html.dark-mode strong {
+
+    color: #edf5ef !important;
+
+}
+
+
+html.dark-mode p,
+html.dark-mode span,
+html.dark-mode small,
+html.dark-mode label {
+
+    color: #a7b4ac;
+
+}
+
+
+/* ===============================
+   INPUTS
+================================ */
+
+html.dark-mode input,
+html.dark-mode select,
+html.dark-mode textarea {
+
+    background: #202923 !important;
+
+    color: #edf5ef !important;
+
+    border-color: #3a473f !important;
+
+}
+
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+
+    color: #77847c !important;
+
+}
+
+
+html.dark-mode select option {
+
+    background: #202923;
+
+    color: #edf5ef;
+
+}
+
+
+/* ===============================
+   BUTTONS
+================================ */
+
+html.dark-mode .logout-button,
+html.dark-mode .top-logout {
+
+    background: #19201c !important;
+
+    color: #75d69d !important;
+
+    border-color: #405048 !important;
+
+}
+
+
+html.dark-mode .logout-button:hover,
+html.dark-mode .top-logout:hover {
+
+    background: #07883f !important;
+
+    color: white !important;
+
+}
+
+
+/* ===============================
+   SEARCH BOX
+================================ */
+
+html.dark-mode .search-box,
+html.dark-mode .dashboard-search-box {
+
+    background: #19201c !important;
+
+    border-color: #303b34 !important;
+
+}
+
+
+/* ===============================
+   RIDE DETAILS
+================================ */
+
+html.dark-mode .route-row,
+html.dark-mode .info-box,
+html.dark-mode .car-details,
+html.dark-mode .rating-bar {
+
+    background: #202923 !important;
+
+    border-color: #354239 !important;
+
+}
+
+
+/* ===============================
+   EMPTY STATES
+================================ */
+
+html.dark-mode .empty-state,
+html.dark-mode .no-results {
+
+    background: #19201c !important;
+
+    color: #edf5ef !important;
+
+}
+
+
+/* ===============================
+   MODALS
+================================ */
+
+html.dark-mode .modal-overlay {
+
+    background: rgba(0, 0, 0, 0.72) !important;
+
+}
+
+
+html.dark-mode .cancel-modal {
+
+    background: #19201c !important;
+
+    color: #edf5ef !important;
+
+}
+
+
+/* ===============================
+   HERO
+================================ */
+
+html.dark-mode .hero-card {
+
+    background:
+        linear-gradient(
+            120deg,
+            #18221c,
+            #202b24
+        ) !important;
+
+    border-color: #303b34 !important;
+
+}
+
+
+html.dark-mode .hero-gradient {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(24,34,28,1) 0%,
+            rgba(24,34,28,.95) 30%,
+            rgba(24,34,28,.70) 55%,
+            rgba(24,34,28,.20) 80%,
+            transparent 100%
+        ) !important;
+
+}
+
+
+/* ===============================
+   SAFETY CARD
+================================ */
+
+html.dark-mode .safety-card {
+
+    background: #193b29 !important;
+
+}
+
+
+/* ===============================
+   PROFILE
+================================ */
+
+html.dark-mode .profile-avatar {
+
+    background: #193b29 !important;
+
+    color: #75d69d !important;
+
+}
+
+
+/* ===============================
+   LINKS
+================================ */
+
+html.dark-mode a {
+
+    color: #75d69d;
+
+}
+
+
+/* ===============================
+   TERMS PAGE
+================================ */
+
+html.dark-mode .terms-header {
+
+    background: #171d19 !important;
+
+    border-color: #303b34 !important;
+
+}
+
+
+html.dark-mode .terms-card {
+
+    background: #19201c !important;
+
+    border-color: #303b34 !important;
+
+}
+
+
+html.dark-mode .agreement-box {
+
+    background: #1d3025 !important;
+
+    border-color: #355240 !important;
+
+}
+
+
+html.dark-mode .back-button {
+
+    color: #a7b4ac !important;
+
+}
+
+
+/* ===============================
+   TRANSITION
+================================ */
+
+body,
+.sidebar,
+.topbar,
+.navbar,
+.card,
+.settings-card,
+.ride-card,
+.hero-card,
+.terms-card,
+input,
+select,
+textarea {
+
+    transition:
+        background-color .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+
+}
