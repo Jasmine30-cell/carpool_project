@@ -1,12 +1,6 @@
-/* =====================================================
-   PROFILE PAGE
-===================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     loadProfile();
-
-    loadStatistics();
 
     setupProfileImage();
 
@@ -25,7 +19,6 @@ function getCurrentUser() {
         "user"
     ];
 
-
     for (const key of keys) {
 
         const data =
@@ -33,25 +26,18 @@ function getCurrentUser() {
 
         if (!data) continue;
 
-
         try {
 
             const user =
                 JSON.parse(data);
 
             if (user) {
-
                 return user;
-
             }
 
-        }
+        } catch (error) {
 
-        catch (error) {
-
-            console.log(
-                "Invalid user data"
-            );
+            console.log("Invalid user data");
 
         }
 
@@ -69,8 +55,7 @@ function getCurrentUser() {
 
         return {
 
-            name:
-                name || "Student",
+            name: name || "Student",
 
             email:
                 email ||
@@ -97,18 +82,15 @@ function saveCurrentUser(user) {
         JSON.stringify(user)
     );
 
-
     localStorage.setItem(
         "loggedInUser",
         JSON.stringify(user)
     );
 
-
     localStorage.setItem(
         "userName",
         user.name || "Student"
     );
-
 
     localStorage.setItem(
         "userEmail",
@@ -129,60 +111,40 @@ function loadProfile() {
 
 
     const profileName =
-        document.getElementById(
-            "profileName"
-        );
+        document.getElementById("profileName");
 
     const profileEmail =
-        document.getElementById(
-            "profileEmail"
-        );
+        document.getElementById("profileEmail");
 
     const profilePhoto =
-        document.getElementById(
-            "profilePhoto"
-        );
+        document.getElementById("profilePhoto");
 
     const topUserName =
-        document.getElementById(
-            "topUserName"
-        );
+        document.getElementById("topUserName");
 
     const topUserAvatar =
-        document.getElementById(
-            "topUserAvatar"
-        );
+        document.getElementById("topUserAvatar");
 
 
     if (!user) {
 
         if (profileName)
-            profileName.textContent =
-                "Student";
-
+            profileName.textContent = "Student";
 
         if (profileEmail)
             profileEmail.textContent =
                 "No account data";
 
-
         if (profilePhoto)
-            profilePhoto.textContent =
-                "?";
-
+            profilePhoto.textContent = "?";
 
         if (topUserName)
-            topUserName.textContent =
-                "Student";
-
+            topUserName.textContent = "Student";
 
         if (topUserAvatar)
-            topUserAvatar.textContent =
-                "?";
-
+            topUserAvatar.textContent = "?";
 
         return;
-
     }
 
 
@@ -191,7 +153,6 @@ function loadProfile() {
         user.fullName ||
         "Student";
 
-
     const email =
         user.email ||
         "No email";
@@ -199,30 +160,68 @@ function loadProfile() {
 
     /* NAME */
 
-    if (profileName) {
+    if (profileName)
+        profileName.textContent = name;
 
-        profileName.textContent =
-            name;
-
-    }
-
-
-    if (topUserName) {
-
-        topUserName.textContent =
-            name;
-
-    }
+    if (topUserName)
+        topUserName.textContent = name;
 
 
     /* EMAIL */
 
-    if (profileEmail) {
+    if (profileEmail)
+        profileEmail.textContent = email;
 
-        profileEmail.textContent =
-            email;
 
-    }
+    /* INFORMATION */
+
+    setText(
+        "infoName",
+        name
+    );
+
+    setText(
+        "infoEmail",
+        email
+    );
+
+    setText(
+        "infoPhone",
+        user.phone ||
+        user.phoneNumber ||
+        "—"
+    );
+
+    setText(
+        "infoDepartment",
+        user.department ||
+        "—"
+    );
+
+    setText(
+        "infoYear",
+        user.year ||
+        "—"
+    );
+
+    setText(
+        "infoGender",
+        user.gender ||
+        "—"
+    );
+
+    setText(
+        "infoAddress",
+        user.address ||
+        "—"
+    );
+
+    setText(
+        "infoStudentId",
+        user.studentId ||
+        user.studentID ||
+        "—"
+    );
 
 
     /* PHOTO */
@@ -237,10 +236,12 @@ function loadProfile() {
         if (profilePhoto) {
 
             profilePhoto.innerHTML =
-                `<img
+                `
+                <img
                     src="${photo}"
                     alt="Profile photo"
-                >`;
+                >
+                `;
 
         }
 
@@ -248,10 +249,12 @@ function loadProfile() {
         if (topUserAvatar) {
 
             topUserAvatar.innerHTML =
-                `<img
+                `
+                <img
                     src="${photo}"
                     alt="Profile photo"
-                >`;
+                >
+                `;
 
         }
 
@@ -260,8 +263,7 @@ function loadProfile() {
     else {
 
         const initial =
-            name.charAt(0)
-                .toUpperCase();
+            name.charAt(0).toUpperCase();
 
 
         if (profilePhoto) {
@@ -285,24 +287,26 @@ function loadProfile() {
 
 
 /* =====================================================
-   STATISTICS
+   SET TEXT
 ===================================================== */
 
-function loadStatistics() {
+function setText(id, value) {
 
-    /*
-        No fake statistics are displayed.
+    const element =
+        document.getElementById(id);
 
-        This function is kept so that if your
-        project later stores actual ride data,
-        it can be used.
-    */
+    if (element) {
+
+        element.textContent =
+            value;
+
+    }
 
 }
 
 
 /* =====================================================
-   OPEN EDIT PROFILE
+   EDIT PROFILE
 ===================================================== */
 
 function editProfile() {
@@ -313,91 +317,55 @@ function editProfile() {
 
     if (!user) {
 
-        alert(
-            "Please login first."
-        );
+        alert("Please login first.");
 
         return;
 
     }
 
 
-    /* NAME */
-
-    document.getElementById(
-        "editName"
-    ).value =
+    document.getElementById("editName").value =
         user.name ||
         user.fullName ||
         "";
 
 
-    /* EMAIL */
-
-    document.getElementById(
-        "editEmail"
-    ).value =
+    document.getElementById("editEmail").value =
         user.email ||
         "";
 
 
-    /* PHONE */
-
-    document.getElementById(
-        "editPhone"
-    ).value =
+    document.getElementById("editPhone").value =
         user.phone ||
         user.phoneNumber ||
         "";
 
 
-    /* DEPARTMENT */
-
-    document.getElementById(
-        "editDepartment"
-    ).value =
+    document.getElementById("editDepartment").value =
         user.department ||
         "";
 
 
-    /* YEAR */
-
-    document.getElementById(
-        "editYear"
-    ).value =
+    document.getElementById("editYear").value =
         user.year ||
         "";
 
 
-    /* GENDER */
-
-    document.getElementById(
-        "editGender"
-    ).value =
+    document.getElementById("editGender").value =
         user.gender ||
         "";
 
 
-    /* ADDRESS */
-
-    document.getElementById(
-        "editAddress"
-    ).value =
+    document.getElementById("editAddress").value =
         user.address ||
         "";
 
 
-    /* STUDENT ID */
-
-    document.getElementById(
-        "editStudentId"
-    ).value =
+    document.getElementById("editStudentId").value =
         user.studentId ||
         user.studentID ||
         "";
 
-
-    /* PHOTO */
 
     updateEditPhotoPreview(
         user.photo ||
@@ -406,15 +374,10 @@ function editProfile() {
     );
 
 
-    /* REMOVE ERROR */
-
     document.getElementById(
         "editProfileError"
-    ).textContent =
-        "";
+    ).textContent = "";
 
-
-    /* OPEN MODAL */
 
     document.getElementById(
         "editProfileModal"
@@ -441,15 +404,12 @@ function closeEditProfile() {
 
     if (modal) {
 
-        modal.classList.remove(
-            "show"
-        );
+        modal.classList.remove("show");
 
     }
 
 
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
 
 }
 
@@ -468,9 +428,7 @@ function saveProfileChanges(event) {
 
 
     if (!user) {
-
         return;
-
     }
 
 
@@ -522,9 +480,7 @@ function saveProfileChanges(event) {
         );
 
 
-    /* =================================================
-       VALIDATION
-    ================================================= */
+    /* VALIDATION */
 
     if (!name) {
 
@@ -599,9 +555,7 @@ function saveProfileChanges(event) {
     }
 
 
-    /* =================================================
-       UPDATE USER
-    ================================================= */
+    /* UPDATE USER */
 
     user.name =
         name;
@@ -634,44 +588,30 @@ function saveProfileChanges(event) {
         studentId;
 
 
-    /* =================================================
-       SAVE
-    ================================================= */
+    /* SAVE */
 
     saveCurrentUser(user);
 
 
-    /* =================================================
-       UPDATE PROFILE PAGE
-    ================================================= */
+    /* REFRESH */
 
     loadProfile();
 
 
-    /* =================================================
-       CLOSE MODAL
-    ================================================= */
+    /* CLOSE */
 
     closeEditProfile();
 
 
-    /* =================================================
-       SUCCESS
-    ================================================= */
-
-    setTimeout(() => {
-
-        alert(
-            "Profile updated successfully!"
-        );
-
-    }, 150);
+    alert(
+        "Profile updated successfully!"
+    );
 
 }
 
 
 /* =====================================================
-   PROFILE IMAGE SETUP
+   PROFILE PHOTO
 ===================================================== */
 
 function setupProfileImage() {
@@ -682,7 +622,9 @@ function setupProfileImage() {
         );
 
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
 
     input.addEventListener(
@@ -694,16 +636,12 @@ function setupProfileImage() {
 
 
             if (!file) {
-
                 return;
-
             }
 
 
             if (
-                !file.type.startsWith(
-                    "image/"
-                )
+                !file.type.startsWith("image/")
             ) {
 
                 alert(
@@ -731,9 +669,7 @@ function setupProfileImage() {
 
 
                     if (!user) {
-
                         return;
-
                     }
 
 
@@ -768,12 +704,10 @@ function setupProfileImage() {
 
 
 /* =====================================================
-   UPDATE EDIT PHOTO PREVIEW
+   UPDATE PHOTO PREVIEW
 ===================================================== */
 
-function updateEditPhotoPreview(
-    photo
-) {
+function updateEditPhotoPreview(photo) {
 
     const preview =
         document.getElementById(
@@ -782,9 +716,7 @@ function updateEditPhotoPreview(
 
 
     if (!preview) {
-
         return;
-
     }
 
 
@@ -808,18 +740,19 @@ function updateEditPhotoPreview(
     if (photo) {
 
         preview.innerHTML =
-            `<img
+            `
+            <img
                 src="${photo}"
                 alt="Profile photo"
-            >`;
+            >
+            `;
 
     }
 
     else {
 
         preview.textContent =
-            name.charAt(0)
-                .toUpperCase();
+            name.charAt(0).toUpperCase();
 
     }
 
@@ -827,7 +760,7 @@ function updateEditPhotoPreview(
 
 
 /* =====================================================
-   DELETE PROFILE PICTURE
+   DELETE PROFILE PHOTO
 ===================================================== */
 
 function deleteProfilePicture() {
@@ -837,9 +770,7 @@ function deleteProfilePicture() {
 
 
     if (!user) {
-
         return;
-
     }
 
 
@@ -848,15 +779,10 @@ function deleteProfilePicture() {
     delete user.profilePhoto;
 
 
-    saveCurrentUser(
-        user
-    );
+    saveCurrentUser(user);
 
 
-    updateEditPhotoPreview(
-        null
-    );
-
+    updateEditPhotoPreview(null);
 
     loadProfile();
 
@@ -864,25 +790,202 @@ function deleteProfilePicture() {
 
 
 /* =====================================================
-   CLICK OUTSIDE MODAL
+   TRUSTED CONTACTS
+===================================================== */
+
+function openTrustedContacts() {
+
+    const modal =
+        document.getElementById(
+            "trustedContactsModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+}
+
+
+function closeTrustedContacts() {
+
+    const modal =
+        document.getElementById(
+            "trustedContactsModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove("show");
+
+    }
+
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =====================================================
+   HELP & SUPPORT
+===================================================== */
+
+function openHelpSupport() {
+
+    const modal =
+        document.getElementById(
+            "helpSupportModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+}
+
+
+function closeHelpSupport() {
+
+    const modal =
+        document.getElementById(
+            "helpSupportModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove("show");
+
+    }
+
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+function showFAQ() {
+
+    alert(
+        "Frequently Asked Questions\n\n" +
+
+        "1. How do I find a ride?\n" +
+        "Go to Find a Ride from the dashboard.\n\n" +
+
+        "2. How do I post a ride?\n" +
+        "Select Post a Ride and enter your journey details.\n\n" +
+
+        "3. Where can I see my rides?\n" +
+        "Open My Rides from the sidebar.\n\n" +
+
+        "4. How do I cancel a ride?\n" +
+        "Open My Rides and select the cancel option."
+    );
+
+}
+
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+function openMessages(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    alert(
+        "Messages will be connected here."
+    );
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function openNotifications(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    alert(
+        "Notifications will be connected here."
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE MODALS WHEN CLICKING OUTSIDE
 ===================================================== */
 
 document.addEventListener(
     "click",
     function (event) {
 
-        const modal =
+        const editModal =
             document.getElementById(
                 "editProfileModal"
             );
 
+        const trustedModal =
+            document.getElementById(
+                "trustedContactsModal"
+            );
+
+        const helpModal =
+            document.getElementById(
+                "helpSupportModal"
+            );
+
 
         if (
-            modal &&
-            event.target === modal
+            editModal &&
+            event.target === editModal
         ) {
 
             closeEditProfile();
+
+        }
+
+
+        if (
+            trustedModal &&
+            event.target === trustedModal
+        ) {
+
+            closeTrustedContacts();
+
+        }
+
+
+        if (
+            helpModal &&
+            event.target === helpModal
+        ) {
+
+            closeHelpSupport();
 
         }
 
@@ -891,7 +994,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   ESC KEY
+   ESCAPE KEY
 ===================================================== */
 
 document.addEventListener(
@@ -904,96 +1007,14 @@ document.addEventListener(
 
             closeEditProfile();
 
+            closeTrustedContacts();
+
+            closeHelpSupport();
+
         }
 
     }
 );
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function openMyRides() {
-
-    window.location.href =
-        "myride.html";
-
-}
-
-
-function openPayment() {
-
-    alert(
-        "Payment Methods page will be connected here."
-    );
-
-}
-
-
-function openContacts() {
-
-    alert(
-        "Trusted Contacts page will be connected here."
-    );
-
-}
-
-
-function openHelp() {
-
-    alert(
-        "Help & Support page will be connected here."
-    );
-
-}
-
-
-function openSettings(event) {
-
-    if (event) {
-
-        event.preventDefault();
-
-    }
-
-
-    window.location.href =
-        "setting.html";
-
-}
-
-
-function openMessages(event) {
-
-    if (event) {
-
-        event.preventDefault();
-
-    }
-
-
-    alert(
-        "Messages will be connected here."
-    );
-
-}
-
-
-function openNotifications(event) {
-
-    if (event) {
-
-        event.preventDefault();
-
-    }
-
-
-    alert(
-        "Notifications will be connected here."
-    );
-
-}
 
 
 /* =====================================================

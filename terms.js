@@ -1,96 +1,161 @@
-document.addEventListener("DOMContentLoaded", function () {
+/* =====================================================
+   TERMS & CONDITIONS
+===================================================== */
 
-    loadAgreement();
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-});
+        setupTerms();
+
+    }
+);
 
 
 /* =====================================================
-   CHECK IF TERMS ARE ALREADY ACCEPTED
+   SETUP
 ===================================================== */
 
-function loadAgreement() {
+function setupTerms() {
+
+    const checkbox =
+        document.getElementById(
+            "termsCheckbox"
+        );
+
+    const message =
+        document.getElementById(
+            "agreementMessage"
+        );
+
+
+    if (!checkbox) return;
+
+
+    /*
+       Check whether the user has
+       already accepted the terms.
+    */
 
     const accepted =
-        localStorage.getItem("termsAccepted") === "true";
+        localStorage.getItem(
+            "termsAccepted"
+        );
 
 
-    if (accepted) {
+    /*
+       Only check it if the user
+       previously accepted.
+    */
 
-        setAgreedState();
+    if (accepted === "true") {
+
+        checkbox.checked = true;
+
+        showAcceptedMessage(message);
 
     }
+
+
+    /*
+       When user clicks checkbox
+    */
+
+    checkbox.addEventListener(
+        "change",
+        function () {
+
+            if (this.checked) {
+
+                /*
+                   SAVE ACCEPTANCE
+                */
+
+                localStorage.setItem(
+                    "termsAccepted",
+                    "true"
+                );
+
+
+                showAcceptedMessage(
+                    message
+                );
+
+            }
+
+            else {
+
+                /*
+                   User unchecked it.
+                   Remove saved acceptance.
+                */
+
+                localStorage.removeItem(
+                    "termsAccepted"
+                );
+
+
+                if (message) {
+
+                    message.textContent =
+                        "You have not accepted the Terms & Conditions.";
+
+                }
+
+            }
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   AGREE TO TERMS
+   ACCEPTED MESSAGE
+===================================================== */
+
+function showAcceptedMessage(message) {
+
+    if (!message) return;
+
+    message.textContent =
+        "✓ Terms & Conditions accepted and saved.";
+
+}
+
+
+/* =====================================================
+   OPTIONAL FUNCTION
 ===================================================== */
 
 function agreeToTerms() {
+
+    const checkbox =
+        document.getElementById(
+            "termsCheckbox"
+        );
+
+
+    if (!checkbox) return;
+
+
+    checkbox.checked = true;
+
 
     localStorage.setItem(
         "termsAccepted",
         "true"
     );
 
-    setAgreedState();
-
 }
 
 
 /* =====================================================
-   CHANGE BUTTON AFTER ACCEPTING
+   DONE BUTTON
 ===================================================== */
 
-function setAgreedState() {
+function goToSettings() {
 
-    const button =
-        document.getElementById("agreeButton");
-
-    const icon =
-        document.getElementById("agreeIcon");
-
-    const text =
-        document.getElementById("agreeText");
-
-    const message =
-        document.getElementById("agreementMessage");
-
-
-    if (!button) {
-        return;
-    }
-
-
-    // Change button appearance
-    button.classList.add("agreed");
-
-
-    // Blue tick
-    if (icon) {
-
-        icon.textContent = "✓";
-
-    }
-
-
-    // Change button text
-    if (text) {
-
-        text.textContent =
-            "Terms & Conditions Accepted";
-
-    }
-
-
-    // Confirmation message
-    if (message) {
-
-        message.textContent =
-            "✓ Your agreement has been saved.";
-
-    }
+    window.location.href = "setting.html";
 
 }

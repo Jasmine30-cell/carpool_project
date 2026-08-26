@@ -94,16 +94,10 @@ function setupThemeButtons() {
                     const theme =
                         this.dataset.theme;
 
-
-                    /* SAVE THEME */
-
                     localStorage.setItem(
                         "carpoolTheme",
                         theme
                     );
-
-
-                    /* APPLY THEME */
 
                     applyTheme(theme);
 
@@ -115,6 +109,71 @@ function setupThemeButtons() {
 }
 
 
+/* =====================================================
+   LOAD SAVED THEME
+===================================================== */
+
+function loadTheme() {
+
+    const theme =
+        localStorage.getItem(
+            "carpoolTheme"
+        ) || "light";
+
+    applyTheme(theme);
+
+}
+
+
+/* =====================================================
+   APPLY GLOBAL THEME
+===================================================== */
+
+function applyTheme(theme) {
+
+    /* Save */
+
+    localStorage.setItem(
+        "carpoolTheme",
+        theme
+    );
+
+
+    /* BODY */
+
+    if (theme === "dark") {
+
+        document.body.classList.add("dark");
+
+        document.documentElement
+            .classList.add("dark-mode");
+
+    }
+
+    else {
+
+        document.body.classList.remove("dark");
+
+        document.documentElement
+            .classList.remove("dark-mode");
+
+    }
+
+
+    /* Highlight selected theme */
+
+    document
+        .querySelectorAll(".appearance-option")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "selected",
+                button.dataset.theme === theme
+            );
+
+        });
+
+}
 
 /* =====================================================
    LOAD SAVED THEME
